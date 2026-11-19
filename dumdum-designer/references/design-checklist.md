@@ -60,5 +60,6 @@ Sort what you find into three groups when reporting:
 - **Real words.** No "lorem ipsum" or "Text goes here". Anything the person still needs to decide is marked clearly in brackets, like `[your price here]`.
 - **Clear order.** The most important thing on the page is the biggest or boldest. Someone glancing for five seconds should know what the page is for and what to do next.
 - **Breathing room.** Sections have generous space between them. Nothing is crammed against the edge of the screen.
+- **No dead space.** No section is much taller than its content, and nothing forces a section to fill the whole screen when its content doesn't. Too much empty space makes a page feel unfinished and pushes the important parts out of view.
 - **Alignment.** Things line up along shared edges. Text is left-aligned for anything longer than a line or two.
 - **Empty and busy states.** If the page shows a list, think about what it looks like with zero items and with many.

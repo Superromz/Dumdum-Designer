@@ -46,3 +46,5 @@ When you change the templates or starter looks in this repo, check them in a rea
 - Never deploy, push, or commit without explicit user confirmation.
 - Version is tracked in `package.json` and `plugin.json`. Keep them the same.
 - Run `claude plugin validate --strict .` and `claude plugin validate --strict ./dumdum-designer` before committing.
+- After a PR merges into `main`, update every installed copy straight away: run `claude plugin list` to see each install scope, run `claude plugin update dumdum-designer@dumdum-designer --scope <scope>` for each one, then confirm the new version in `claude plugin list`. Remind the user to restart open sessions. A stale install shows up as "Unknown command".
+- When an instruction leaves a choice the user will see and live with (where files go, a folder versus a branch, naming), ask one short question before building instead of picking silently.

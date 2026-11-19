@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.1
+
+- The browser check now also flags too much empty space (sections much taller than their content), and the design checklist has a matching "No dead space" item.
+- Stopping the local preview server is now confirmed before it's reported as stopped.
+- Contributor rules: update every installed copy right after a PR merges, and ask one question before making choices the user will live with.
+
 ## 2.4.0
 
 - **Designs include their ripple effects.** When a new page or change touches existing pages or components (a link in the menu, a button on another page, a shared header or card, a new building block), the skills find those changes, confirm them, and design them too. Shared pieces update in every prototype, existing pages get small `touches/` mockups, the brandbook gets new building blocks, and `changes.md` lists everything a developer needs to change. `check-design` flags pages nobody can reach and prototypes showing an old version of a shared piece.
