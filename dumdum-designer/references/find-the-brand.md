@@ -10,7 +10,7 @@ Check two places.
 
 ### 1. A Dumdum brandbook
 
-Look for `design/brand.css` and `design/brand.md`, first in the design copy (see `where-files-go.md`), then in the project folder. If both exist, that is the brand. Read `brand.md` for the rules and `brand.css` for the values. Stop searching.
+Look for `design/brand.css` and `design/brand.md` in the project folder (on the current branch), then in any `dumdum-designer/...` branches, where an earlier brandbook may live. Read those with `git show <branch>:design/brand.css`, without switching branches (see `where-files-go.md`). If both exist, that is the brand. Read `brand.md` for the rules and `brand.css` for the values. Stop searching.
 
 ### 2. Signs of an existing brand or design system
 

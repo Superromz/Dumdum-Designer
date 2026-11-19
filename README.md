@@ -44,7 +44,9 @@ It looks at what you already have and takes you through the right steps. You can
 
 Prototypes are separate from your real app. Dumdum never edits your real app's files.
 
-If your project uses git (a tool that keeps the history of a project), all design work is saved on a separate throwaway branch called `dumdum-designer`, in its own folder next to your project. Nothing is ever saved on the branch you're working on unless you explicitly ask for it, and nothing is pushed or merged without you asking.
+If your project uses git (a tool that keeps the history of a project), design work happens right inside your project, on a throwaway branch named after what you're designing, like `dumdum-designer/member-dashboard`. Think of it as a scratch copy: your real work stays exactly as it is. Once you approve the design, the branch is dropped (or kept for a developer, if you'd like). Nothing is saved on the branch you're working on unless you explicitly ask, and nothing is pushed or merged without you asking.
+
+Designs are plain HTML and CSS that don't touch or depend on your app's code, so this works the same in any project, whatever it's built with.
 
 ## Install
 

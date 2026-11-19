@@ -69,7 +69,7 @@ Before building, summarize in plain English and ask for an OK:
 >
 > I'll save three files: a visual brandbook you can open in your browser, a short written guide, and a style file that every page we design will use. Sound good?"
 
-If their project uses git, this is also where you explain the separate design copy (see `where-files-go.md`) and get their OK.
+If their project uses git, this is also where you explain the throwaway design branch (see `where-files-go.md`) and get their OK.
 
 ## Step 5: Build it
 
@@ -100,7 +100,9 @@ If their project already has components (buttons, cards, form fields), say how t
 
 Apply changes the same way (explain, confirm, update the files, recheck contrast, look at it again in a real browser, commit, reopen). When they're happy:
 
-> "Your brand is ready. When you want to design a new page, try `/dumdum-designer:sketch-page` to plan it, or go straight to `/dumdum-designer:make-prototype`."
+> "Your brand is ready. When you want to design a new page, try `/dumdum-designer:design` and say which page."
+
+In a git project, follow Step 5 of `where-files-go.md`. Because a brandbook is reused by every future page, recommend option 3 there (save the brandbook into their project), but only do it if they say yes.
 
 ---
 

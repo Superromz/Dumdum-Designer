@@ -15,6 +15,7 @@ Shared guides (read each one when you reach the step that needs it):
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/build-the-brandbook.md` (only if there's no brand yet)
 - `${CLAUDE_PLUGIN_ROOT}/references/prototype-template.html`: the starting point for every prototype file
+- `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html`: one screen to switch between options
 - `${CLAUDE_PLUGIN_ROOT}/references/design-checklist.md`: the self-check before showing anything
 - `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: reuse existing components and design elements before making new ones
 - `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: check the result in a real browser before showing it
@@ -83,15 +84,24 @@ Start each file from `prototype-template.html` and follow these rules:
 - **Accessible.** Every field has a label, every image box has a description, everything clickable works with the keyboard, and headings go in order (h1, then h2, and so on).
 - **Self-contained except for the brand.** Only `brand.css`, Google Fonts (through `brand.css`) and the Lucide icons. Nothing to install.
 
+**The compare screen.** When there is more than one option, also make `prototypes/<page-name>/compare.html` from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html`. It shows all the options in one screen, with a switcher to flip between them and phone, tablet and desktop sizes. Fill `{{PAGE_NAME}}` and `{{BRAND_NAME}}`, and replace `{{OPTIONS_LIST}}` with one line per option, in order:
+
+```js
+{ file: "option-a.html", label: "Option A", note: "Straight to the point: headline, the three plans, done." },
+{ file: "option-b.html", label: "Option B", note: "Reassuring: what's included and a customer quote first." },
+```
+
+Check that no `{{` is left. With only one option, skip the compare screen.
+
 Before showing anything, go through `design-checklist.md` yourself, then follow `look-at-it.md`. Open every version in a real browser (Claude in Chrome or whichever browser tool is available), check phone, tablet and desktop widths, click the main interactions, and compare against the brandbook and the pieces you reused. Fix what you find and look again.
 
 Save and commit following `where-files-go.md`. Never commit on their working branch.
 
 ## Step 6: Show and explain
 
-Open each version in their browser (Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`). Then explain briefly:
+Open the compare screen in their browser (or the single option, if there's only one): Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`. Then explain briefly:
 
-> "Both versions are open in your browser. Try clicking around, and try making the window narrow to see how it looks on a phone.
+> "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
 >
 > - **Option A** leads with [what], so [why it might work].
 > - **Option B** leads with [what], so [why it might work].
@@ -100,17 +110,27 @@ Open each version in their browser (Windows `start "" "<path>"`, Mac `open "<pat
 
 Add one short lesson tied to a choice you made, for example: "Notice there's only one bright button per screen. That's on purpose: when everything shouts, nothing gets heard."
 
-## Step 7: Pick one
+## Step 7: Narrow it down
 
-> "Which one do you like best? It's also fine to say 'A, but with B's top section'."
+After they've flipped through the options, give them clear choices, one message:
 
-- **They pick one:** copy it to `prototypes/<page-name>/v1.html` and commit. Leave the option files in place.
-- **They want a mix:** build the mix as `v1.html`, explain what came from where, and commit.
-- **They don't like any:** ask what feels off, one question at a time, then offer new directions.
+> "What would you like to do?
+> 1. **Pick one** to keep working on. It's also fine to say 'A, but with B's top section'.
+> 2. **Add another option**, for example 'one more that's more playful' or 'a version with photos first'.
+> 3. **Remove options** you don't like, so it's easier to compare the rest.
+> 4. **None of these feel right.** Tell me what feels off and I'll try new directions."
+
+- **Pick one:** copy it to `prototypes/<page-name>/v1.html` and commit. Leave the option files and the compare screen in place.
+- **A mix:** build the mix as `v1.html`, explain what came from where, and commit.
+- **Add an option:** describe its direction in one line and get an OK. Build it as the next letter (`option-c.html`) with the same rules as Step 5, look at it (`look-at-it.md`), add it to the `OPTIONS` list in `compare.html`, commit, and reopen the compare screen showing the new one (`compare.html#3` for the third option). Then offer these choices again.
+- **Remove options:** confirm which ones in a sentence ("I'll remove Option B and keep A and C"), then take them off the `OPTIONS` list in `compare.html` and delete their files. Don't rename the remaining files. Commit, reopen the compare screen, and offer these choices again. They're on the throwaway design branch, so say: "They're still in the design history if you change your mind." If only one option is left, treat it as picked.
+- **None feel right:** ask what feels off, one question at a time, then add new options as above.
 
 Then:
 
 > "Saved as version 1. To change anything, just tell me, or use `/dumdum-designer:change-it`. To have it checked for readability and phone problems, try `/dumdum-designer:check-design`."
+
+If they say the design is approved, or they're done: in a git project, follow Step 5 of `where-files-go.md` and offer to drop the design branch and take them back to their working branch.
 
 ---
 

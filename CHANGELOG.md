@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0
+
+- **Design branches live inside the current project.** In a git project, design work now happens on a throwaway branch in the same project folder, named after what's being designed (`dumdum-designer/member-dashboard`), instead of a separate copy next to the project. Uncommitted work comes along untouched. Once the design is approved, Dumdum offers to drop the branch and return to the working branch, to keep it for a developer, or to save just the brandbook into the project. Design files stay plain HTML and CSS that don't depend on the app's code, so this works in any project.
+- **Compare options on one screen.** With more than one option, prototypes open together in `compare.html`, with a switcher (buttons or arrow keys) and phone, tablet and desktop sizes. People can then pick one, add another option, or remove the ones they don't like. `change-it` can do the same for alternative versions of a change.
+- **Tighter brandbook.** Sections no longer fill the whole screen, and the brandbook's own layout uses compact fixed spacing instead of the brand's (sometimes large) spacing scale, so it reads like a guide rather than a stack of near-empty pages.
+
 ## 2.2.0
 
 - New `design` skill, the front door. Say what you want to design (`/dumdum-designer:design the member dashboard`) and it works out what already exists, shows the route in plain words, and takes you through the brand, plan, prototype, change or check steps in order. People no longer need to know which command to start with.

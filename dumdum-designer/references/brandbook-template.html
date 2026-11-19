@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="brand.css">
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <style>
+    /* The brandbook's own frame uses fixed, compact spacing so it stays tidy
+       whatever the brand's spacing scale is. The building blocks it shows
+       (buttons, cards, fields) use the brand's own values from brand.css. */
     .bb-page {
-      --bb-side: max(var(--space-7), calc((100% - 1200px) / 2));
-      position: relative;
-      min-height: 100vh;
-      padding: var(--space-7) var(--bb-side) var(--space-8);
+      --bb-side: max(40px, calc((100% - 1120px) / 2));
+      padding: 40px var(--bb-side) 32px;
       border-bottom: 1px solid var(--color-border);
       background: var(--color-background);
     }
@@ -25,93 +26,101 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       color: var(--color-text-muted);
       font-size: var(--text-small);
     }
-    .bb-top { margin-bottom: var(--space-7); }
-    .bb-bottom {
-      position: absolute;
-      left: var(--bb-side);
-      right: var(--bb-side);
-      bottom: var(--space-5);
-      padding-top: var(--space-4);
-      border-top: 1px solid var(--color-border);
-    }
-    .bb-top .bb-brand { display: flex; align-items: center; gap: var(--space-2); color: var(--color-heading); font-family: var(--font-heading); font-weight: 700; }
+    .bb-top { margin-bottom: 24px; }
+    .bb-bottom { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--color-border); }
+    .bb-top .bb-brand { display: flex; align-items: center; gap: 8px; color: var(--color-heading); font-family: var(--font-heading); font-weight: 700; }
     .bb-top .bb-brand svg { width: 24px; height: 24px; }
     .bb-page-number { font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .bb-title { font-size: var(--text-h2); margin-bottom: var(--space-6); }
+    .bb-title { font-size: var(--text-h2); margin-bottom: 12px; }
     .bb-title span { color: var(--color-primary); }
-    .bb-intro { max-width: 640px; color: var(--color-text-muted); margin-bottom: var(--space-6); }
+    .bb-intro { max-width: 640px; color: var(--color-text-muted); margin-bottom: 24px; }
 
     .bb-cover {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-height: 60vh;
       background: var(--color-primary);
       color: var(--color-on-primary);
     }
+    .bb-cover .container { padding: 0; }
     .bb-cover h1, .bb-cover p { color: var(--color-on-primary); }
-    .bb-cover h1 { font-size: clamp(40px, 8vw, 88px); margin-bottom: var(--space-4); }
-    .bb-cover .bb-cover-mark svg { width: 72px; height: 72px; margin-bottom: var(--space-6); }
+    .bb-cover h1 { font-size: clamp(40px, 7vw, 80px); margin-bottom: 8px; }
+    .bb-cover p { margin-bottom: 8px; }
+    .bb-cover .bb-cover-mark svg { width: 64px; height: 64px; margin-bottom: 24px; }
     .bb-cover .bb-bottom { color: var(--color-on-primary); border-color: rgba(255, 255, 255, 0.3); }
 
-    .bb-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 var(--space-7); max-width: 760px; }
+    .bb-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 40px; max-width: 720px; }
     .bb-contents a {
       display: flex;
       align-items: baseline;
-      gap: var(--space-4);
-      padding: var(--space-4) 0;
+      gap: 16px;
+      padding: 12px 0;
       border-bottom: 1px solid var(--color-border);
       color: var(--color-heading);
       text-decoration: none;
       font-weight: 600;
     }
-    .bb-contents a b { font-family: var(--font-heading); font-size: var(--text-h2); min-width: 2.2em; }
+    .bb-contents a b { font-family: var(--font-heading); font-size: 26px; min-width: 2em; }
 
-    .bb-logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
-    .bb-logo-box { display: grid; place-items: center; min-height: 220px; border-radius: var(--radius-card); border: 1px solid var(--color-border); background: var(--color-surface); padding: var(--space-6); }
+    .bb-logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .bb-logo-box { display: grid; place-items: center; min-height: 150px; border-radius: var(--radius-card); border: 1px solid var(--color-border); background: var(--color-surface); padding: 24px; }
     .bb-logo-box.on-dark { background: var(--color-secondary); border-color: transparent; }
     .bb-logo-box svg { max-width: 100%; height: auto; }
-    .bb-caption { margin-top: var(--space-3); color: var(--color-text-muted); font-size: var(--text-small); }
+    .bb-caption { margin: 8px 0 0; color: var(--color-text-muted); font-size: var(--text-small); }
 
-    .bb-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-5); }
+    .bb-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)); gap: 12px; }
     .bb-swatch { border: 1px solid var(--color-border); border-radius: var(--radius-card); overflow: hidden; background: var(--color-surface); }
-    .bb-swatch .chip { height: 120px; }
-    .bb-swatch .info { padding: var(--space-4); }
+    .bb-swatch .chip { height: 72px; }
+    .bb-swatch .info { padding: 12px; }
     .bb-swatch .info strong { display: block; color: var(--color-heading); }
     .bb-swatch .info code { color: var(--color-text-muted); font-size: var(--text-small); }
-    .bb-swatch .info p { margin: var(--space-2) 0 0; font-size: var(--text-small); color: var(--color-text-muted); }
-    .bb-group-title { margin: var(--space-6) 0 var(--space-4); }
+    .bb-swatch .info p { margin: 4px 0 0; font-size: var(--text-small); line-height: 1.4; color: var(--color-text-muted); }
+    .bb-group-title { margin: 24px 0 12px; font-size: var(--text-h4); }
+    .bb-intro + .bb-group-title { margin-top: 0; }
 
-    .bb-type { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); }
-    .bb-type-aa { font-size: 160px; line-height: 1; color: var(--color-border-strong); }
-    .bb-type-name { font-size: var(--text-h1); margin-bottom: 0; }
-    .bb-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .bb-type { display: grid; grid-template-columns: minmax(180px, 1fr) 2fr; gap: 32px; align-items: start; }
+    .bb-type + .bb-type { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-border); }
+    .bb-type-aa { font-size: 112px; line-height: 1; color: var(--color-border-strong); }
+    .bb-type h3 { margin: 8px 0 4px; }
+    .bb-type p { margin-bottom: 0; }
+    .bb-type-name { font-size: var(--text-h2); margin-bottom: 0; }
+    .bb-table { width: 100%; margin-top: 12px; border-collapse: collapse; table-layout: fixed; }
     .bb-table th:first-child { width: 55%; }
-    .bb-table th { text-align: left; color: var(--color-text-muted); font-weight: 500; padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
-    .bb-table td { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); vertical-align: middle; }
-    .bb-table td:first-child { color: var(--color-heading); }
+    .bb-table th { text-align: left; color: var(--color-text-muted); font-weight: 500; padding: 8px 0; border-bottom: 1px solid var(--color-border); }
+    .bb-table td { padding: 8px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); vertical-align: middle; }
+    .bb-table td:first-child { color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .bb-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); }
-    .bb-demo-box { padding: var(--space-6); border: 1px dashed var(--color-border-strong); border-radius: var(--radius-card); background: var(--color-surface); }
-    .bb-demo-box > h4 { color: var(--color-text-muted); font-family: var(--font-body); font-size: var(--text-small); text-transform: uppercase; letter-spacing: 0.08em; }
-    .bb-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--space-4); }
-    .bb-icons div { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--text-small); color: var(--color-text-muted); }
-    .bb-icons .icon { color: var(--color-heading); width: 28px; height: 28px; }
+    .bb-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .bb-demo-box { padding: 20px; border: 1px dashed var(--color-border-strong); border-radius: var(--radius-card); background: var(--color-surface); }
+    .bb-demo-box > h4 { margin: 0 0 12px; color: var(--color-text-muted); font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .bb-demo-box > * + h4 { margin-top: 20px; }
+    .bb-demo-box .field:last-child { margin-bottom: 0; }
+    .bb-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
+    .bb-icons div { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--text-small); color: var(--color-text-muted); }
+    .bb-icons .icon { color: var(--color-heading); width: 24px; height: 24px; }
+    .bb-cards { gap: 16px; }
 
-    .bb-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); }
-    .bb-rules ul { margin: 0; padding-left: var(--space-5); }
-    .bb-rules li { margin-bottom: var(--space-2); }
+    .bb-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .bb-rules .card { padding: 20px; }
+    .bb-rules h3 { display: flex; align-items: center; gap: 8px; }
+    .bb-rules ul { margin: 0; padding-left: 20px; }
+    .bb-rules li { margin-bottom: 6px; }
 
     @media (max-width: 640px) {
-      .bb-page { --bb-side: var(--space-4); padding: var(--space-5) var(--bb-side) var(--space-8); }
-      .bb-type { grid-template-columns: 1fr; gap: var(--space-4); }
-      .bb-type-aa { font-size: 96px; }
+      .bb-page { --bb-side: 16px; padding: 28px var(--bb-side) 24px; }
+      .bb-cover { min-height: 50vh; }
+      .bb-type { grid-template-columns: 1fr; gap: 12px; }
+      .bb-type-aa { font-size: 80px; }
       .bb-table th:first-child { width: 44%; }
+      .bb-demo-box { padding: 16px; }
     }
     @media print {
-      .bb-page { break-after: page; min-height: auto; }
+      .bb-page { break-after: page; }
     }
   </style>
 </head>
@@ -344,8 +353,8 @@
       </div>
       <div class="bb-demo-box">
         <h4>Switches</h4>
-        <label class="switch"><input type="checkbox" checked><span class="track"></span> Dark mode</label><br>
-        <label class="switch"><input type="checkbox"><span class="track"></span> Show prices with tax</label>
+        <div class="stack" style="gap: 4px"><label class="switch"><input type="checkbox" checked><span class="track"></span> Dark mode</label>
+        <label class="switch"><input type="checkbox"><span class="track"></span> Show prices with tax</label></div>
       </div>
     </div>
     <div class="bb-bottom"><span>Selectors</span><span>Brand Book Guidelines</span></div>
@@ -356,10 +365,10 @@
     <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 10</span></div>
     <h2 class="bb-title"><span>08.</span> Cards</h2>
     <p class="bb-intro">A card groups everything about one thing, like a product, a person or an event. Keep cards in a row the same size and in the same order: picture, title, details, then the action.</p>
-    <div class="grid">
+    <div class="grid bb-cards">
       <article class="card">
         <span class="badge">New</span>
-        <h3 style="margin-top: var(--space-3)">Basic card</h3>
+        <h3 style="margin-top: 12px">Basic card</h3>
         <p class="text-muted">A short description of one thing, two or three lines at most.</p>
         <button class="button button-secondary button-small">Learn more</button>
       </article>
@@ -369,7 +378,7 @@
         <button class="button button-primary button-small">Choose this</button>
       </article>
       <article class="card card-clickable" tabindex="0">
-        <div class="row" style="margin-bottom: var(--space-3)"><span class="avatar">JR</span><strong>Jamie Rivera</strong></div>
+        <div class="row" style="margin-bottom: 12px"><span class="avatar">JR</span><strong>Jamie Rivera</strong></div>
         <p class="text-muted">Clickable card. The whole card is the button, and it lifts when you point at it.</p>
       </article>
     </div>
@@ -384,13 +393,13 @@
       <div class="bb-demo-box">
         <h4>Badges</h4>
         <div class="row"><span class="badge">New</span><span class="badge badge-accent">Popular</span><span class="badge badge-success">Paid</span><span class="badge badge-warning">Due soon</span><span class="badge badge-danger">Overdue</span></div>
-        <h4 style="margin-top: var(--space-5)">Tags</h4>
+        <h4>Tags</h4>
         <div class="row"><span class="tag">Vegetarian</span><span class="tag">Outdoor seating</span><span class="tag"><i data-lucide="x" class="icon icon-small"></i>Remove filter</span></div>
       </div>
       <div class="bb-demo-box">
         <h4>Avatars</h4>
         <div class="row"><span class="avatar">JR</span><span class="avatar">AK</span><span class="avatar">MS</span></div>
-        <h4 style="margin-top: var(--space-5)">Progress</h4>
+        <h4>Progress</h4>
         <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"><span style="width: 60%"></span></div>
       </div>
       <div class="bb-demo-box">
@@ -469,7 +478,7 @@
         const sample = row.children[0];
         sample.textContent = name;
         sample.style.fontFamily = font;
-        sample.style.fontSize = "var(" + size + ")";
+        sample.style.fontSize = "min(var(" + size + "), 7vw)";
         sample.style.fontWeight = weight;
         sample.style.lineHeight = "1.3";
         row.children[1].textContent = value(size);

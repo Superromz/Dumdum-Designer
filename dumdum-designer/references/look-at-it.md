@@ -17,7 +17,7 @@ If no browser tool is available at all, say so plainly: "I can't look at the pag
 
 Browser tools often can't open files directly (addresses starting with `file://`). Serve the folder instead:
 
-- Start a small local web server in the design copy folder (see `where-files-go.md`) and run it in the background. Use whichever works: `python -m http.server 8765 --bind 127.0.0.1`, or `npx --yes http-server -p 8765 -a 127.0.0.1`.
+- Start a small local web server in the project folder (you'll be on the design branch, see `where-files-go.md`) and run it in the background. Use whichever is available: `python -m http.server 8765 --bind 127.0.0.1`, `python3 -m http.server 8765 --bind 127.0.0.1`, or `npx --yes http-server -p 8765 -a 127.0.0.1`. If port 8765 is busy, pick another. Don't use the app's own dev server: the design files don't depend on the app.
 - Open `http://127.0.0.1:8765/design/brandbook.html` or `http://127.0.0.1:8765/prototypes/<page>/<file>.html`.
 - When finished, stop the server and close the tabs you opened.
 
@@ -27,7 +27,7 @@ Tell the person in one line what you're doing: "I'm opening the page in a browse
 
 Check every page at **phone (375px)**, **tablet (768px)** and **desktop (1280px)** widths.
 
-First, try resizing the browser window. If the page width doesn't actually change (some screens and window managers won't let a window get that narrow), create a temporary preview page next to the design files, outside `design/` and `prototypes/`, for example `_preview.html` at the root of the design copy. It should show the page in three frames, 375px, 768px and 1280px wide. Delete the preview page afterwards, and never commit it.
+First, try resizing the browser window. If the page width doesn't actually change (some screens and window managers won't let a window get that narrow), create a temporary preview page next to the design files, outside `design/` and `prototypes/`, for example `_preview.html` at the project root. It should show the page in three frames, 375px, 768px and 1280px wide. Delete the preview page afterwards, and never commit it.
 
 Take a screenshot at each size, scrolling through the whole page, and look at it carefully.
 

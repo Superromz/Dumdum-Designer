@@ -21,7 +21,7 @@ Shared guides:
 
 ## Step 1: Find the prototype
 
-Look in `prototypes/` (in the design copy first, see `where-files-go.md`).
+Look in `prototypes/` on the current branch, and in any `dumdum-designer/...` design branches (see `where-files-go.md`). If the prototype is on a design branch you're not on, switch to it following `where-files-go.md` before changing anything.
 
 - **Nothing there:** say so kindly and suggest `/dumdum-designer:make-prototype` to make one first. Stop.
 - **One page:** use its newest version (the highest `vN.html`, or the option files if no version has been picked yet).
@@ -47,6 +47,8 @@ Vague feedback is normal. Instead of asking an open question again, offer two or
 > 3. A stronger main button that stands out more
 >
 > Or something else?"
+
+If they'd rather **see a few alternatives** than one change ("show me some other ways to do the top section"), make two or three versions of the change as options next to the newest version (`v4-option-a.html`, `v4-option-b.html`). Build a compare screen for them from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html` (`compare-v4.html`), and let them switch, add or remove options exactly as in Step 7 of `${CLAUDE_PLUGIN_ROOT}/skills/make-prototype/SKILL.md`. The one they pick becomes the next version.
 
 If they ask to **go back** ("I liked the last one better"), copy the version they want forward as the next version number instead of deleting anything. Say: "I've brought back version 2 as version 4, so your history stays complete."
 
@@ -98,7 +100,7 @@ Open the new version in their browser. Then:
 
 Add a one-line design lesson when there's a natural one, for example: "Making one thing bigger works better than making everything bigger: size only stands out when there's contrast."
 
-Then: "Anything else you'd like to change?" Keep going round by round until they're happy. When they are, suggest `/dumdum-designer:check-design` for a final check.
+Then: "Anything else you'd like to change?" Keep going round by round until they're happy. When they are, suggest `/dumdum-designer:check-design` for a final check. In a git project, once they approve, follow Step 5 of `where-files-go.md`: offer to drop the design branch and take them back to their working branch.
 
 ---
 

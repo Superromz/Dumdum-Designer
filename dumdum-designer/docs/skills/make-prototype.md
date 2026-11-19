@@ -17,10 +17,12 @@ Then it asks how many versions you'd like to compare: one, two or three. Each ve
 - Real draft words instead of filler, with anything you still need to decide marked like `[your price here]`.
 - It works on a phone. Make the browser window narrow to see.
 
+With more than one version, they open together in one compare screen: switch between them with the buttons at the top (or the arrow keys), and flip between phone, tablet and desktop sizes. Then you can pick one, ask for another option, or remove the ones you don't like.
+
 When you pick a favorite (or a mix, like "A with B's top section"), it's saved as `v1.html`.
 
 ## Good to Know
 
 - Prototypes are completely separate from your real app. Dumdum never edits your real app's files.
-- If your project uses git, prototypes are saved on a separate throwaway branch in their own folder, never on the branch you're working on.
+- If your project uses git, prototypes are saved on a throwaway branch inside your project, like `dumdum-designer/member-dashboard`, never on the branch you're working on. Once you approve the design, the branch is dropped, or kept for a developer if you'd like.
 - Where a photo belongs, you'll see a labeled box, like `[photo: a family sharing dinner]`, instead of a fake picture.

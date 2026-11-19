@@ -41,7 +41,7 @@ Before considering a skill complete, verify all of the following:
 - Does it translate design and technical terms inline?
 - Does it look for an existing brand first, and never overwrite one?
 - Does it confirm before making changes?
-- Does it save on the throwaway `dumdum-designer` branch, never on the person's working branch?
+- Does it save on a throwaway `dumdum-designer/<name>` branch in the same project, never on the person's working branch, and offer to drop it after approval?
 - Does it reuse existing components and design elements before making new ones (`references/reuse-first.md`)?
 - Does it check its result in a real browser, at phone, tablet and desktop widths, before showing it (`references/look-at-it.md`)?
 - Does it explain what happened after completing a step?

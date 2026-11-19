@@ -28,6 +28,7 @@ dumdum-designer/
     brand-md-template.md    template for design/brand.md
     brandbook-template.html template for design/brandbook.html
     prototype-template.html starting point for every prototype file
+    compare-template.html   one screen to switch between options and screen sizes
     components.css          the shared building blocks copied into every brand.css
     starter-looks/          calm.css, bold.css, playful.css
   docs/
@@ -132,7 +133,7 @@ Read the [Design Philosophy](philosophy.md) before writing a skill. The short ve
 4. Try it in three kinds of folders:
    - an empty folder (no brand, no git);
    - a project with an existing design system (for example a Tailwind theme or a `components/ui` folder), where it must reuse the existing look;
-   - a git project, where design files must land on the `dumdum-designer` branch in a separate folder, and the working branch must stay untouched.
+   - a git project, where design files must land on a `dumdum-designer/<name>` branch in the same folder, the working branch must stay untouched (including any uncommitted changes), and approval must offer to drop the branch.
 5. Open the brandbook and a prototype at phone width (375px) and desktop width. Nothing should scroll sideways.
 6. Give vague or confused answers. The skill should offer concrete options, not stall.
 

@@ -39,7 +39,7 @@ Before answering, check what already exists, without asking the person anything:
 - **Prototypes:** is there already a prototype for this page in `prototypes/`, and what's its newest version?
 - **The real app:** is there one, and does it already have this page or similar pages?
 
-Check the design copy first (see `where-files-go.md`), then the project folder.
+Check the project folder on the current branch, and any `dumdum-designer/...` design branches (see `where-files-go.md`).
 
 ## Step 3: Show the route
 
@@ -99,6 +99,8 @@ When the route is done, summarize in a few lines:
 - one natural next step, in plain words: "If you'd like to change anything, just tell me what. I'll save it as a new version."
 
 Mention that next time they can type `/dumdum-designer:design` again, or just describe what they want.
+
+When they approve the design, or say they're done: in a git project, follow Step 5 of `where-files-go.md`. Offer to drop the design branch and return them to their working branch, to keep it for a developer, or to save the brandbook into their project.
 
 ---
 
