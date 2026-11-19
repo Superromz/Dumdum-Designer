@@ -39,16 +39,17 @@ On older versions of Claude Code:
 Open Claude Code in your project (or any empty folder) and type:
 
 ```
-/dumdum-designer:make-prototype
+/dumdum-designer:design the pricing page
 ```
 
-Tell it what page you want. If there's no brand yet, it sets up a simple one first, then builds your page.
+It looks at what you already have and takes you through the right steps. If there's no brand yet, it sets up a simple one first, then builds your page.
 
 
 ## All skills
 
 | Command | What it does |
 |---|---|
+| `/dumdum-designer:design` | The front door. Say what you want to design and it takes you through the right steps. |
 | `/dumdum-designer:make-brandbook` | Find your existing brand, or create one together, and save it as a visual brandbook. |
 | `/dumdum-designer:sketch-page` | Plan what goes on a new page, and in what order, with a rough sketch. |
 | `/dumdum-designer:make-prototype` | Build 1, 2 or 3 clickable versions of the page to compare in your browser. |
@@ -61,4 +62,4 @@ Tell it what page you want. If there's no brand yet, it sets up a simple one fir
 - [Design Philosophy](philosophy.md): why Dumdum works the way it does.
 - [All Skills Reference](all-skills.md): a detailed guide to every skill.
 - [For Developers](for-developers.md): how the plugin is built and how to change it.
-- Per-skill docs: [make-brandbook](skills/make-brandbook.md), [sketch-page](skills/sketch-page.md), [make-prototype](skills/make-prototype.md), [change-it](skills/change-it.md), [check-design](skills/check-design.md).
+- Per-skill docs: [design](skills/design.md), [make-brandbook](skills/make-brandbook.md), [sketch-page](skills/sketch-page.md), [make-prototype](skills/make-prototype.md), [change-it](skills/change-it.md), [check-design](skills/check-design.md).

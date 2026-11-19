@@ -16,7 +16,13 @@ Dumdum Designer turns that sentence into something you can click.
 
 ## How it works
 
-Five skills, used roughly in this order. Each one also works on its own.
+Start with one command and say what you want to design:
+
+```
+/dumdum-designer:design the member dashboard
+```
+
+It looks at what you already have and takes you through the right steps. You can also run any step directly:
 
 ```
 /dumdum-designer:make-brandbook   Find your brand, or create one together
@@ -60,10 +66,10 @@ On older versions of Claude Code, use two steps:
 Open Claude Code in your project folder (or any empty folder) and type:
 
 ```
-/dumdum-designer:make-prototype
+/dumdum-designer:design
 ```
 
-Tell it which page you want. If you don't have a brand yet, it will set up a simple one first.
+Then say what you'd like to design, like "the pricing page" or "the member dashboard". If you don't have a brand yet, it sets up a simple one first. You can also put it all on one line: `/dumdum-designer:design the pricing page`.
 
 ## What makes Dumdum different
 
