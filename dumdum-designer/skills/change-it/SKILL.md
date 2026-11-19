@@ -49,7 +49,7 @@ Vague feedback is normal. Instead of asking an open question again, offer two or
 >
 > Or something else?"
 
-If they'd rather **see a few alternatives** than one change ("show me some other ways to do the top section"), make two or three versions of the change as options next to the newest version (`v4-option-a.html`, `v4-option-b.html`). Build a compare screen for them from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html` (`compare-v4.html`), and let them switch, add or remove options exactly as in Step 7 of `${CLAUDE_PLUGIN_ROOT}/skills/make-prototype/SKILL.md`. The one they pick becomes the next version.
+If they'd rather **see a few alternatives** than one change ("show me some other ways to do the top section"), make two or three versions of the change as options next to the newest version (`v4-option-a.html`, `v4-option-b.html`). Build a compare screen for them from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html` (`compare-v4.html`), and let them switch, add or remove options exactly as in Step 7 of `${CLAUDE_PLUGIN_ROOT}/skills/make-prototype/SKILL.md`. If the change spans several pieces (the page and how Home leads into it), give options per piece, as in that skill's Step 4. The one they pick becomes the next version.
 
 If they ask to **go back** ("I liked the last one better"), bring the version they want forward as the next version instead of deleting anything: standalone, copy that file to the next number; in the app, restore the page's files from that version's commit and commit them as the next version (`${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md` section 5). Say: "I've brought back version 2 as version 4, so your history stays complete."
 

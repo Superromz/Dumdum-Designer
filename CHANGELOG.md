@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.6.0
+
+- **Options per piece by default.** When a design has several pieces with real design choices (the new page, how Home leads into it, an email), `make-prototype` now gives options for each piece separately without asking how to structure them, then puts the picked winners together and checks the combination. Whole experiences or in-place variants are still available on request. Small edits like a menu link are just done.
+- The compare screen has a piece switcher (up and down arrow keys) and a line showing the option chosen for each piece. It works as before for a single piece.
+- Emails are prototyped as HTML email previews.
+- **Pick on the screen.** The compare screen has a **Pick this one** button. Picks get a check mark and a summary line, and once every piece has a pick they open together automatically. The skill reads the picks straight from the screen when the person says "done" (a **Copy my picks** button covers sessions without a browser tool).
+- The compare screen's controls are compact on phones, and the arrow keys keep working whatever has focus.
+- Stopping preview servers is now confirmed by the address and the process list, and leftover servers from the session are stopped too.
+
 ## 2.5.0
 
 - **Hybrid prototypes.** When the project has an app that runs, prototypes are now built inside it, on the throwaway design branch, from the real header, menus and components, instead of being recreated as separate HTML. People see the page in their own app, ripple effects become real edits (the real menu gets the new link), and an approved design is a head start for the developer. Options are separate routes in the compare screen, and versions are commits. When there's no app, it won't start, or the person wants a quick sketch, prototypes are standalone HTML as before.

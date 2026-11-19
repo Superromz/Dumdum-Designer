@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{PAGE_NAME}}: compare options | {{BRAND_NAME}}</title>
   <!--
-    Dumdum Designer compare screen. Shows every option of one page in a single
-    screen, with a switcher and phone, tablet and desktop sizes.
-    The list of options is the OPTIONS list in the script at the bottom.
-    To add or remove an option, change that list.
+    Dumdum Designer compare screen. Shows the options for each piece of a
+    design, lets the person pick one per piece right on the screen, and shows
+    the picks together once every piece has one.
+    The pieces and their options are the PIECES list in the script at the
+    bottom. To add or remove an option or a piece, change that list.
+    The picks are kept in the page address (#...&picks=2,1,1) and can be read
+    with window.dumdumPicks().
   -->
   <link rel="stylesheet" href="../../design/brand.css">
   <style>
     html, body { height: 100%; }
+    [hidden] { display: none !important; }
     body { display: flex; flex-direction: column; background: var(--color-surface-muted); }
     .cmp-bar {
       display: flex;
@@ -25,10 +29,25 @@
     }
     .cmp-title { margin: 0; font-size: var(--text-h4); }
     .cmp-title small { display: block; color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400; font-size: var(--text-small); }
-    .cmp-options { flex-wrap: wrap; }
+    .cmp-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .cmp-group > span { color: var(--color-text-muted); font-size: var(--text-small); font-weight: 600; }
+    .cmp-group .segmented { flex-wrap: wrap; }
+    .cmp-group .segmented button.is-picked::after { content: " \2713"; color: var(--color-success); }
     .cmp-spacer { flex: 1; }
-    .cmp-note { padding: 8px 20px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--text-small); }
-    .cmp-note strong { color: var(--color-text); }
+    .cmp-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 24px;
+      padding: 8px 20px;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+    }
+    .cmp-info p { margin: 0; }
+    .cmp-info strong { color: var(--color-text); }
+    .cmp-picks { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
     .cmp-stage { flex: 1; display: flex; justify-content: center; padding: 20px; overflow: auto; }
     .cmp-frame {
       width: 100%;
@@ -41,17 +60,26 @@
       box-shadow: var(--shadow-large);
       transition: width 0.2s ease;
     }
+    .cmp-together { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .cmp-together section { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .cmp-together h2 { margin: 0; font-size: var(--text-h4); }
+    .cmp-together .cmp-frame { height: 70vh; }
     @media (max-width: 640px) {
-      .cmp-bar { padding: 12px 16px; }
-      .cmp-stage { padding: 12px; }
-      .cmp-sizes { display: none; }
+      .cmp-bar { gap: 8px; padding: 8px 12px; }
+      .cmp-title small, .cmp-group > span, #open, .cmp-sizes, .cmp-spacer { display: none; }
+      .cmp-group .segmented button { min-height: 32px; padding: 4px 10px; font-size: var(--text-small); }
+      .cmp-info { padding: 6px 12px; }
+      .cmp-stage { padding: 8px; }
     }
   </style>
 </head>
 <body>
   <header class="cmp-bar">
-    <h1 class="cmp-title">{{PAGE_NAME}}<small>Compare options. Use the arrow keys to switch.</small></h1>
-    <div class="segmented cmp-options" role="group" aria-label="Options" id="options"></div>
+    <h1 class="cmp-title">{{PAGE_NAME}}<small id="hint">Compare, then pick one for each piece. Arrow keys switch.</small></h1>
+    <div class="cmp-group" id="piece-group"><span>Piece</span><div class="segmented" role="group" aria-label="Piece" id="pieces"></div></div>
+    <div class="cmp-group" id="option-group"><span>Option</span><div class="segmented" role="group" aria-label="Options" id="options"></div></div>
+    <button type="button" class="button button-primary button-small" id="pick">Pick this one</button>
+    <button type="button" class="button button-secondary button-small" id="together" hidden>See your picks together</button>
     <div class="cmp-spacer"></div>
     <div class="segmented cmp-sizes" role="group" aria-label="Screen size" id="sizes">
       <button type="button" data-width="375" aria-pressed="false">Phone</button>
@@ -60,59 +88,204 @@
     </div>
     <a class="button button-secondary button-small" id="open" href="#" target="_blank" rel="noopener">Open on its own</a>
   </header>
-  <p class="cmp-note" id="note" aria-live="polite"></p>
-  <main class="cmp-stage">
+  <div class="cmp-info">
+    <p id="note" aria-live="polite"></p>
+    <div class="cmp-picks">
+      <p id="picks" aria-live="polite"></p>
+      <button type="button" class="button button-quiet button-small" id="copy" hidden>Copy my picks</button>
+    </div>
+  </div>
+  <main class="cmp-stage" id="stage">
     <iframe class="cmp-frame" id="frame" title="Selected option"></iframe>
   </main>
 
   <script>
-    // One entry per option: the file, a short label, and its direction in one line.
-    const OPTIONS = [
-      {{OPTIONS_LIST}}
+    // One entry per piece of the design (the page itself, how Home leads into it,
+    // an email...). Each piece has its options: the file or preview address,
+    // a short label, and its direction in one line. A design with one piece has
+    // one entry here, and the piece switcher hides itself.
+    const PIECES = [
+      {{PIECES_LIST}}
     ];
 
+    const stage = document.getElementById("stage");
     const frame = document.getElementById("frame");
+    const piecesBox = document.getElementById("pieces");
     const optionsBox = document.getElementById("options");
+    const pickButton = document.getElementById("pick");
+    const togetherButton = document.getElementById("together");
+    const copyButton = document.getElementById("copy");
     const note = document.getElementById("note");
+    const picksLine = document.getElementById("picks");
     const openLink = document.getElementById("open");
-    let current = 0;
+    const many = PIECES.length > 1;
 
-    OPTIONS.forEach((option, index) => {
+    const shown = PIECES.map(() => 0);   // option on screen, per piece
+    const picks = PIECES.map(() => null); // option picked, per piece
+    let piece = 0;
+    let together = false;
+    let width = "";
+
+    if (!many) {
+      document.getElementById("piece-group").hidden = true;
+      document.getElementById("hint").textContent = "Compare, then pick the one you like. Arrow keys switch.";
+    }
+
+    // Read where we were from the address: #piece=2&option=1&picks=2,1,0&together=1
+    const saved = new URLSearchParams(location.hash.slice(1));
+    (saved.get("picks") || "").split(",").forEach((n, i) => {
+      const index = parseInt(n, 10) - 1;
+      if (PIECES[i] && PIECES[i].options[index]) picks[i] = index;
+    });
+    PIECES.forEach((p, i) => { if (picks[i] !== null) shown[i] = picks[i]; });
+    const startPiece = parseInt(saved.get("piece"), 10) - 1;
+    if (PIECES[startPiece]) piece = startPiece;
+    const startOption = parseInt(saved.get("option"), 10) - 1;
+    if (PIECES[piece].options[startOption]) shown[piece] = startOption;
+
+    PIECES.forEach((p, index) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.textContent = option.label;
-      button.addEventListener("click", () => show(index));
-      optionsBox.appendChild(button);
+      button.textContent = p.name;
+      button.addEventListener("click", () => { together = false; piece = index; render(); });
+      piecesBox.appendChild(button);
     });
 
-    function show(index) {
-      current = (index + OPTIONS.length) % OPTIONS.length;
-      const option = OPTIONS[current];
-      frame.src = option.file;
-      openLink.href = option.file;
-      note.innerHTML = "";
-      const label = document.createElement("strong");
-      label.textContent = option.label + ": ";
-      note.append(label, option.note);
-      [...optionsBox.children].forEach((button, i) => button.setAttribute("aria-pressed", String(i === current)));
-      history.replaceState(null, "", "#" + (current + 1));
+    function allPicked() { return picks.every((p) => p !== null); }
+
+    window.dumdumPicks = () => PIECES.map((p, i) => ({
+      piece: p.name,
+      picked: picks[i] === null ? null : p.options[picks[i]].label,
+      file: picks[i] === null ? null : p.options[picks[i]].file,
+    }));
+
+    function picksText() {
+      return PIECES.map((p, i) => (many ? p.name + ": " : "") + (picks[i] === null ? "not picked yet" : p.options[picks[i]].label)).join(", ");
     }
+
+    function saveAddress() {
+      const params = new URLSearchParams();
+      params.set("piece", piece + 1);
+      params.set("option", shown[piece] + 1);
+      params.set("picks", picks.map((p) => (p === null ? 0 : p + 1)).join(","));
+      if (together) params.set("together", 1);
+      history.replaceState(null, "", "#" + params.toString());
+    }
+
+    function makeFrame(src, title) {
+      const f = document.createElement("iframe");
+      f.className = "cmp-frame";
+      f.title = title;
+      f.src = src;
+      if (width) f.style.width = width + "px";
+      return f;
+    }
+
+    function render() {
+      [...piecesBox.children].forEach((b, i) => {
+        b.setAttribute("aria-pressed", String(!together && i === piece));
+        b.classList.toggle("is-picked", picks[i] !== null);
+      });
+
+      optionsBox.innerHTML = "";
+      PIECES[piece].options.forEach((option, i) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = option.label;
+        button.setAttribute("aria-pressed", String(!together && i === shown[piece]));
+        button.classList.toggle("is-picked", picks[piece] === i);
+        button.addEventListener("click", () => { together = false; shown[piece] = i; render(); });
+        optionsBox.appendChild(button);
+      });
+      document.getElementById("option-group").hidden = together;
+
+      const option = PIECES[piece].options[shown[piece]];
+      const isPicked = picks[piece] === shown[piece];
+      pickButton.hidden = together;
+      pickButton.textContent = isPicked ? "Picked" : "Pick this one";
+      pickButton.className = "button button-small " + (isPicked ? "button-secondary" : "button-primary");
+      pickButton.setAttribute("aria-pressed", String(isPicked));
+
+      togetherButton.hidden = !many || !allPicked();
+      togetherButton.textContent = together ? "Back to comparing" : "See your picks together";
+
+      const pickedCount = picks.filter((p) => p !== null).length;
+      picksLine.innerHTML = "";
+      const label = document.createElement("strong");
+      label.textContent = pickedCount ? "Your picks: " : "Nothing picked yet. ";
+      picksLine.append(label, pickedCount ? picksText() : "Use “Pick this one” on the option you like" + (many ? " for each piece." : "."));
+      if (allPicked()) picksLine.append(". Tell Claude “done” when you’re happy.");
+      copyButton.hidden = !pickedCount;
+
+      if (together) {
+        note.textContent = "Your picks together, in order.";
+        openLink.hidden = true;
+        stage.innerHTML = "";
+        const list = document.createElement("div");
+        list.className = "cmp-together";
+        PIECES.forEach((p, i) => {
+          const chosen = p.options[picks[i]];
+          const section = document.createElement("section");
+          const heading = document.createElement("h2");
+          heading.textContent = p.name + ": " + chosen.label;
+          section.append(heading, makeFrame(chosen.file, p.name + ", " + chosen.label));
+          list.appendChild(section);
+        });
+        stage.appendChild(list);
+      } else {
+        note.innerHTML = "";
+        const name = document.createElement("strong");
+        name.textContent = option.label + ": ";
+        note.append(name, option.note);
+        openLink.hidden = false;
+        openLink.href = option.file;
+        if (!stage.contains(frame)) { stage.innerHTML = ""; stage.appendChild(frame); }
+        if (frame.getAttribute("src") !== option.file) frame.src = option.file;
+        frame.style.width = width ? width + "px" : "100%";
+      }
+      saveAddress();
+    }
+
+    pickButton.addEventListener("click", () => {
+      const wasComplete = allPicked();
+      picks[piece] = shown[piece];
+      // When the last piece gets its pick, show everything together straight away.
+      if (many && !wasComplete && allPicked()) together = true;
+      else if (many && !allPicked()) {
+        const next = picks.findIndex((p) => p === null);
+        if (next !== -1) piece = next;
+      }
+      render();
+    });
+
+    togetherButton.addEventListener("click", () => { together = !together; render(); });
+
+    copyButton.addEventListener("click", async () => {
+      const text = "My picks for {{PAGE_NAME}}: " + picksText();
+      try { await navigator.clipboard.writeText(text); copyButton.textContent = "Copied"; }
+      catch (error) { window.prompt("Copy your picks:", text); }
+      setTimeout(() => { copyButton.textContent = "Copy my picks"; }, 2000);
+    });
 
     document.querySelectorAll("#sizes button").forEach((button) => {
       button.addEventListener("click", () => {
-        frame.style.width = button.dataset.width ? button.dataset.width + "px" : "100%";
+        width = button.dataset.width;
         document.querySelectorAll("#sizes button").forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+        document.querySelectorAll(".cmp-frame").forEach((f) => { f.style.width = width ? width + "px" : "100%"; });
       });
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.target.closest("input, textarea, select")) return;
-      if (event.key === "ArrowRight") show(current + 1);
-      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.target instanceof Element && event.target.closest("input, textarea, select")) return;
+      const count = PIECES[piece].options.length;
+      if (event.key === "ArrowRight") { together = false; shown[piece] = (shown[piece] + 1) % count; render(); }
+      if (event.key === "ArrowLeft") { together = false; shown[piece] = (shown[piece] - 1 + count) % count; render(); }
+      if (event.key === "ArrowDown" && many) { together = false; piece = (piece + 1) % PIECES.length; render(); }
+      if (event.key === "ArrowUp" && many) { together = false; piece = (piece - 1 + PIECES.length) % PIECES.length; render(); }
     });
 
-    const start = parseInt(location.hash.slice(1), 10);
-    show(Number.isInteger(start) ? start - 1 : 0);
+    together = many && saved.get("together") === "1" && allPicked();
+    render();
   </script>
 </body>
 </html>

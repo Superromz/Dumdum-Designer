@@ -17,7 +17,7 @@ Then it asks how many versions you'd like to compare: one, two or three. Each ve
 - Real draft words instead of filler, with anything you still need to decide marked like `[your price here]`.
 - It works on a phone. Make the browser window narrow to see.
 
-With more than one version, they open together in one compare screen: switch between them with the buttons at the top (or the arrow keys), and flip between phone, tablet and desktop sizes. Then you can pick one, ask for another option, or remove the ones you don't like.
+If the design has several pieces, like the new page, how your Home page leads into it, and an email, you get options for each piece separately, pick the best of each, and Dumdum puts the winners together. With more than one version, they open together in one compare screen: switch between them with the buttons at the top (or the arrow keys), and flip between phone, tablet and desktop sizes. Press **Pick this one** on the option you like (one per piece). When every piece has a pick, your picks show up together on the same screen. Say "done" and Dumdum reads your picks from the screen, so there's nothing to type. You can also ask for another option, or remove the ones you don't like.
 
 When you pick a favorite (or a mix, like "A with B's top section"), it's saved as `v1.html`.
 

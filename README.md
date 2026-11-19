@@ -36,7 +36,7 @@ It looks at what you already have and takes you through the right steps. You can
 
 **2. Then the page.** `sketch-page` works out what the page is for and what goes on it, and saves a plan with a rough sketch.
 
-**3. Then something you can click.** `make-prototype` asks how many versions you want to see, then builds each one as a page that opens in your browser, built entirely from your brandbook. Pick one, mix two, or ask for something different.
+**3. Then something you can click.** `make-prototype` asks how many versions you want to see, then builds each one as a page that opens in your browser, built entirely from your brandbook. Pick one, mix two, or ask for something different. When a design has several pieces, like the page, how Home leads into it, and an email, you get options for each piece and pick the best of each.
 
 **Nothing is left dangling.** If a new page touches existing parts of your app, like a link in the menu, a button on another page or a shared header, Dumdum designs those changes too and lists everything that changes in one file for your developer.
 

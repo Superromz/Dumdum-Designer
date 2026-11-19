@@ -44,13 +44,17 @@ Work only on the design branch (`where-files-go.md`).
 
 Build each option as its own page or route next to the real one, with a clear prototype name. For example, `/dashboard-option-a` and `/dashboard-option-b`, or the project's equivalent. Each option uses the same real components, so they differ in direction, not in style.
 
+With several pieces (`make-prototype` Step 4), each piece's options get their own routes, named after the piece: `/progress-option-a`, and Home with each entry option as `/home-entry-option-a`. Emails stay standalone HTML previews unless the project has email templates.
+
 The compare screen works the same way. Make `prototypes/<page-name>/compare.html` from `compare-template.html`, and put each option's preview address in its `file`:
 
 ```js
-{ file: "http://localhost:3000/dashboard-option-a", label: "Option A", note: "Straight to the point." },
+{ name: "My progress page", options: [
+  { file: "http://localhost:3000/progress-option-a", label: "Option A", note: "Coach's summary." },
+] },
 ```
 
-When one is picked, turn it into the real route (`/dashboard`), delete the other option routes, and keep the compare screen in sync. Adding or removing options adds or deletes option routes.
+When one is picked (or one per piece), turn the picks into the real routes and edits, delete the other option routes, and keep the compare screen in sync. Adding or removing options adds or deletes option routes.
 
 ## 5. Versions in the app
 
