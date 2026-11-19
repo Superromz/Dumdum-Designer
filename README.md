@@ -38,6 +38,8 @@ It looks at what you already have and takes you through the right steps. You can
 
 **3. Then something you can click.** `make-prototype` asks how many versions you want to see, then builds each one as a page that opens in your browser, built entirely from your brandbook. Pick one, mix two, or ask for something different.
 
+**Nothing is left dangling.** If a new page touches existing parts of your app, like a link in the menu, a button on another page or a shared header, Dumdum designs those changes too and lists everything that changes in one file for your developer.
+
 **4. Then make it right.** `change-it` takes feedback like "it feels too busy" and saves every round as a new version, so you can always go back. `check-design` finds what real visitors would trip over (hard-to-read text, buttons too small to tap, pages that break on a phone) and fixes things only when you say so.
 
 ## Your project stays safe

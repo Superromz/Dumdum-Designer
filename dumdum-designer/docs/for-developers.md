@@ -24,6 +24,7 @@ dumdum-designer/
     build-the-brandbook.md  how answers become brand.css, brand.md, the logo and brandbook.html
     design-checklist.md     what check-design checks, and every skill's self-check
     reuse-first.md          reuse existing components and design elements before making new ones
+    ripple-effects.md       design the changes a page causes in existing pages and components
     look-at-it.md           check every result in a real browser before showing it
     brand-md-template.md    template for design/brand.md
     brandbook-template.html template for design/brandbook.html

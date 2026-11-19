@@ -51,6 +51,8 @@ Sort what you find into three groups when reporting:
 - **Same job, same look.** Things that do the same job look identical everywhere on the page and across pages: one style of main button, one card style per kind of content, one icon size per context.
 - **Matches the other pages.** Put the page next to the brandbook and the person's other prototypes. Anything that looks different for no reason is a problem.
 - **Rows line up.** Cards in a row have the same height and the same inner order (picture, title, details, action).
+- **Reachable.** Something existing leads to the page: a menu item, a link or a button. If the page changes a shared piece, every prototype shows the same new version (see `ripple-effects.md`).
+- **Changes listed.** `changes.md` lists every existing page and component the design touches.
 - **New pieces fit the family.** Anything new uses the same rounding, borders, shadows, text sizes and spacing as the existing pieces.
 
 ## Feels finished

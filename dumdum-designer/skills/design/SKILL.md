@@ -86,6 +86,9 @@ If they're not sure what they want, explain the options in plain words:
 
 ## Step 4: Take them through it
 
+Whatever the route, the page steps also handle ripple effects (`${CLAUDE_PLUGIN_ROOT}/references/ripple-effects.md`): the existing pages and components the design touches get designed too, and are listed in `changes.md`. Mention this when you show the route if you already spotted some: "Adding the dashboard also means a new menu link and a button on the account page. I'll design those too."
+
+
 Follow the chosen skill's steps exactly, including all of its shared guides. Skip its "Say what's about to happen" step, because you already did that in Step 3.
 
 When one step finishes and the route continues, move on to the next one in a single sentence, without asking them to run anything: "Your plan is saved. Now let's build it." Ask for an OK only where the step itself asks for one.

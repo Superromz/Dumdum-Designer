@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0
+
+- **Designs include their ripple effects.** When a new page or change touches existing pages or components (a link in the menu, a button on another page, a shared header or card, a new building block), the skills find those changes, confirm them, and design them too. Shared pieces update in every prototype, existing pages get small `touches/` mockups, the brandbook gets new building blocks, and `changes.md` lists everything a developer needs to change. `check-design` flags pages nobody can reach and prototypes showing an old version of a shared piece.
+
 ## 2.3.0
 
 - **Design branches live inside the current project.** In a git project, design work now happens on a throwaway branch in the same project folder, named after what's being designed (`dumdum-designer/member-dashboard`), instead of a separate copy next to the project. Uncommitted work comes along untouched. Once the design is approved, Dumdum offers to drop the branch and return to the working branch, to keep it for a developer, or to save just the brandbook into the project. Design files stay plain HTML and CSS that don't depend on the app's code, so this works in any project.

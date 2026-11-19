@@ -16,6 +16,7 @@ Shared guides:
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: how to look at the page in a real browser
 - `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: what consistent reuse looks like
+- `${CLAUDE_PLUGIN_ROOT}/references/ripple-effects.md`: what a design should change elsewhere
 
 ---
 
@@ -47,6 +48,7 @@ Go through every item in `design-checklist.md`.
 - **Look at it in a real browser, always.** Follow `look-at-it.md`: open the page with Claude in Chrome or whichever browser tool is available, at phone (375px), tablet (768px) and desktop (1280px) widths. Screenshot the whole page at each size, click the main interactions, and read the console for errors. Only fall back to code-only checking when no browser tool exists, and say so.
 - **Check the brand.** Look for color codes or fonts that aren't in `brand.css`, one-off button or card styles, and anything against the do and don't list in `brand.md`.
 - **Check for reuse.** Following `reuse-first.md`, flag any piece that duplicates something that already exists in a slightly different style. That includes a second button style for the same job, a card that doesn't match the brand's cards, and a header that differs from the other prototypes or the real app. Each one should become the existing piece.
+- **Check the ripples.** Following `ripple-effects.md`, flag a page nobody can reach (no menu item, link or button points to it), other prototypes still showing an old version of a shared piece, a new building block missing from the brandbook, and a `changes.md` that's missing or out of date.
 
 ## Step 5: Report
 
