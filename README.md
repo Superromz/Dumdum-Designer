@@ -1,116 +1,83 @@
-# DumDum Skills
+# Dumdum Designer
 
-**Build real software. No experience needed.**
+**Design and prototype new pages. No design or coding experience needed.**
 
-DumDum Skills is a Claude Code plugin that turns plain English into working software. You describe what you want, and DumDum walks you through building it, explaining everything along the way.
+Dumdum Designer is a Claude Code plugin that helps anyone design a new page and see it working in the browser before anyone builds it for real. You describe what you want in plain English. Dumdum finds your brand (or makes one with you), plans the page, and builds clickable versions you can compare and refine.
 
-No coding knowledge required. No jargon. No assumptions about what you already know.
+No jargon. No assumptions about what you already know.
 
 ---
 
 ## The problem
 
-Every AI coding tool assumes you're already a developer. They talk about "scaffolding" and "CI/CD pipelines" and "containerization." They expect you to know git, know what a framework is, know how to read an error message.
+Most people with an idea for a page can describe it, but can't show it. Design tools assume you know design. Coding tools assume you know code. So ideas stay as sentences in a meeting, or as a sketch on a napkin that everyone imagines differently.
 
-That locks out most people. The CEO with an idea for a tool. The teacher who wants a classroom app. The kid who wants to make a game. The retiree who wants to finally build that thing they've been thinking about for years.
-
-DumDum Skills fixes that.
+Dumdum Designer turns that sentence into something you can click.
 
 ## How it works
 
-DumDum gives you 22 skills, plain English commands that guide you through every part of building software:
+Five skills, used roughly in this order. Each one also works on its own.
 
-**Think**: Shape your idea
 ```
-/dumdum:idea              Tell me your idea, I'll help you shape it
-/dumdum:who-is-it-for     Figure out who will use it
-/dumdum:break-it-down     Split it into buildable pieces
-```
-
-**Plan**: Figure out the how
-```
-/dumdum:sketch-it         Describe what each screen looks like
-/dumdum:pick-tools        Choose the right technology (explained simply)
-/dumdum:steps             Make an ordered build plan
+/dumdum-designer:make-brandbook   Find your brand, or create one together
+/dumdum-designer:sketch-page      Plan what goes on a new page
+/dumdum-designer:make-prototype   Build 1, 2 or 3 clickable versions to compare
+/dumdum-designer:change-it        Tweak it in plain words, version by version
+/dumdum-designer:check-design     Check readability, phone size and brand fit
 ```
 
-**Build**: Make it real
-```
-/dumdum:start-project     Set up a new project from scratch
-/dumdum:add-feature       Add one feature at a time
-/dumdum:fix-problem       Find and fix what's broken
-/dumdum:make-it-look-good Improve the visual design
-```
+**1. Your brand comes first.** Every skill starts by looking in your project for an existing brand or design system: brand documents, colors in your code, a component kit, your logo. If there is one, Dumdum uses it and never overwrites it. If there isn't, `make-brandbook` creates one with you, starting from a Calm, Bold or Playful look. You get a visual brandbook covering logo, colors, typography, icons, text fields, buttons, selectors, cards and small details.
 
-**Check**: Make sure it works
-```
-/dumdum:test-it           Run checks and report results
-/dumdum:explain-it        Explain any file in plain English
-/dumdum:review-it         Inspect the whole project for issues
-```
+**2. Then the page.** `sketch-page` works out what the page is for and what goes on it, and saves a plan with a rough sketch.
 
-**Ship**: Put it out there
-```
-/dumdum:save-progress     Save a checkpoint of your work
-/dumdum:put-it-online     Deploy to the internet, step by step
-/dumdum:tell-people       Generate a README and social post
-```
+**3. Then something you can click.** `make-prototype` asks how many versions you want to see, then builds each one as a page that opens in your browser, built entirely from your brandbook. Pick one, mix two, or ask for something different.
 
-**Learn**: Understand what's happening
-```
-/dumdum:whats-happening   Get a status report in plain English
-/dumdum:teach-me          Learn any concept with analogies
-/dumdum:glossary          Get a jargon-free dictionary for your project
-```
+**4. Then make it right.** `change-it` takes feedback like "it feels too busy" and saves every round as a new version, so you can always go back. `check-design` finds what real visitors would trip over (hard-to-read text, buttons too small to tap, pages that break on a phone) and fixes things only when you say so.
 
-**Manage**: Keep things organized
-```
-/dumdum:whats-left        See what's remaining as a checklist
-/dumdum:clean-up          Remove unused code, organize files
-/dumdum:take-notes        Save decisions and ideas to a journal
-```
+## Your project stays safe
 
-## What makes DumDum different
+Prototypes are separate from your real app. Dumdum never edits your real app's files.
 
-Most AI coding plugins are built by developers, for developers. DumDum is built for everyone else.
-
-- **Plain English only.** If a technical term comes up, it gets explained right there, in the moment. You never need to Google something to keep up.
-- **One question at a time.** DumDum doesn't dump a form on you. It asks simple questions, one at a time, and uses your answers to make smart decisions.
-- **Teaches while it builds.** After every action, DumDum explains what it did and why. You learn by building, not by studying.
-- **No prerequisites.** Each skill works on its own. You can start anywhere. You don't need to run them in order. Jump in wherever makes sense.
-- **Real results.** This isn't a tutorial or a sandbox. DumDum builds real software that actually runs. Real files, real code, real websites.
+If your project uses git (a tool that keeps the history of a project), all design work is saved on a separate throwaway branch called `dumdum-designer`, in its own folder next to your project. Nothing is ever saved on the branch you're working on unless you explicitly ask for it, and nothing is pushed or merged without you asking.
 
 ## Install
 
-You need [Claude Code](https://claude.ai/code) installed first.
+You need [Claude Code](https://claude.ai/code) installed first. Then, inside Claude Code:
 
-```bash
-# Clone this repo
-git clone https://github.com/Superromz/DumDum-Skills.git
+```
+/plugin install dumdum-designer --marketplace Superromz/Dumdum-Designer
+```
 
-# Link it to Claude Code's plugin directory
-ln -s "$(pwd)/DumDum-Skills/dumdum-skills" ~/.claude/plugins/dumdum-skills
+On older versions of Claude Code, use two steps:
 
-# Restart Claude Code
+```
+/plugin marketplace add Superromz/Dumdum-Designer
+/plugin install dumdum-designer@dumdum-designer
 ```
 
 ## Get started
 
-Open Claude Code in any directory and type:
+Open Claude Code in your project folder (or any empty folder) and type:
 
 ```
-/dumdum:idea
+/dumdum-designer:make-prototype
 ```
 
-DumDum will ask you what you want to build. Go from there.
+Tell it which page you want. If you don't have a brand yet, it will set up a simple one first.
+
+## What makes Dumdum different
+
+- **Plain English only.** Design words get explained right where they come up.
+- **One question at a time.** No forms, no walls of options.
+- **Teaches as it goes.** After each step, Dumdum explains the design choices it made and why, so you pick up how good pages work.
+- **Your brand wins.** Existing brands and design systems are found, respected and never overwritten.
+- **Real, clickable pages.** Not pictures of pages. Buttons work, menus open, and it works on a phone.
 
 ## Docs
 
-Detailed documentation lives in [`dumdum-skills/docs/`](dumdum-skills/docs/):
-
-- [**All Skills Reference**](dumdum-skills/docs/all-skills.md): Every skill explained with example conversations
-- [**Design Philosophy**](dumdum-skills/docs/philosophy.md): The 8 principles behind DumDum
-- [**Contributing**](dumdum-skills/docs/for-developers.md): How to add new skills
+- [**All Skills Reference**](dumdum-designer/docs/all-skills.md): every skill, with example conversations
+- [**Design Philosophy**](dumdum-designer/docs/philosophy.md): the principles behind Dumdum
+- [**Contributing**](dumdum-designer/docs/for-developers.md): how the plugin is built and how to change it
 
 ## License
 

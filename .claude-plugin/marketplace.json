@@ -1,0 +1,16 @@
+{
+  "name": "dumdum-designer",
+  "owner": {
+    "name": "Superromz"
+  },
+  "metadata": {
+    "description": "Dumdum Designer: design and prototype new pages in plain English."
+  },
+  "plugins": [
+    {
+      "name": "dumdum-designer",
+      "source": "./dumdum-designer",
+      "description": "Find or create your brandbook, plan a page, and get clickable prototypes to compare, all in plain English."
+    }
+  ]
+}

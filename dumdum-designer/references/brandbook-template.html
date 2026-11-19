@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BRAND_NAME}} Brand Book</title>
+  <!--
+    Dumdum Designer brandbook.
+    Colors, fonts and sizes are read live from brand.css (next to this file),
+    so this page always matches it. Only the words in double curly braces
+    are filled in by hand.
+  -->
+  <link rel="stylesheet" href="brand.css">
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <style>
+    .bb-page {
+      --bb-side: max(var(--space-7), calc((100% - 1200px) / 2));
+      position: relative;
+      min-height: 100vh;
+      padding: var(--space-7) var(--bb-side) var(--space-8);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-background);
+    }
+    .bb-top, .bb-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+    }
+    .bb-top { margin-bottom: var(--space-7); }
+    .bb-bottom {
+      position: absolute;
+      left: var(--bb-side);
+      right: var(--bb-side);
+      bottom: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-border);
+    }
+    .bb-top .bb-brand { display: flex; align-items: center; gap: var(--space-2); color: var(--color-heading); font-family: var(--font-heading); font-weight: 700; }
+    .bb-top .bb-brand svg { width: 24px; height: 24px; }
+    .bb-page-number { font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .bb-title { font-size: var(--text-h2); margin-bottom: var(--space-6); }
+    .bb-title span { color: var(--color-primary); }
+    .bb-intro { max-width: 640px; color: var(--color-text-muted); margin-bottom: var(--space-6); }
+
+    .bb-cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+    }
+    .bb-cover h1, .bb-cover p { color: var(--color-on-primary); }
+    .bb-cover h1 { font-size: clamp(40px, 8vw, 88px); margin-bottom: var(--space-4); }
+    .bb-cover .bb-cover-mark svg { width: 72px; height: 72px; margin-bottom: var(--space-6); }
+    .bb-cover .bb-bottom { color: var(--color-on-primary); border-color: rgba(255, 255, 255, 0.3); }
+
+    .bb-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 var(--space-7); max-width: 760px; }
+    .bb-contents a {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-heading);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bb-contents a b { font-family: var(--font-heading); font-size: var(--text-h2); min-width: 2.2em; }
+
+    .bb-logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
+    .bb-logo-box { display: grid; place-items: center; min-height: 220px; border-radius: var(--radius-card); border: 1px solid var(--color-border); background: var(--color-surface); padding: var(--space-6); }
+    .bb-logo-box.on-dark { background: var(--color-secondary); border-color: transparent; }
+    .bb-logo-box svg { max-width: 100%; height: auto; }
+    .bb-caption { margin-top: var(--space-3); color: var(--color-text-muted); font-size: var(--text-small); }
+
+    .bb-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-5); }
+    .bb-swatch { border: 1px solid var(--color-border); border-radius: var(--radius-card); overflow: hidden; background: var(--color-surface); }
+    .bb-swatch .chip { height: 120px; }
+    .bb-swatch .info { padding: var(--space-4); }
+    .bb-swatch .info strong { display: block; color: var(--color-heading); }
+    .bb-swatch .info code { color: var(--color-text-muted); font-size: var(--text-small); }
+    .bb-swatch .info p { margin: var(--space-2) 0 0; font-size: var(--text-small); color: var(--color-text-muted); }
+    .bb-group-title { margin: var(--space-6) 0 var(--space-4); }
+
+    .bb-type { display: grid; grid-template-columns: minmax(200px, 1fr) 2fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); }
+    .bb-type-aa { font-size: 160px; line-height: 1; color: var(--color-border-strong); }
+    .bb-type-name { font-size: var(--text-h1); margin-bottom: 0; }
+    .bb-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .bb-table th:first-child { width: 55%; }
+    .bb-table th { text-align: left; color: var(--color-text-muted); font-weight: 500; padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+    .bb-table td { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); vertical-align: middle; }
+    .bb-table td:first-child { color: var(--color-heading); }
+
+    .bb-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); }
+    .bb-demo-box { padding: var(--space-6); border: 1px dashed var(--color-border-strong); border-radius: var(--radius-card); background: var(--color-surface); }
+    .bb-demo-box > h4 { color: var(--color-text-muted); font-family: var(--font-body); font-size: var(--text-small); text-transform: uppercase; letter-spacing: 0.08em; }
+    .bb-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--space-4); }
+    .bb-icons div { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-4); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-border); font-size: var(--text-small); color: var(--color-text-muted); }
+    .bb-icons .icon { color: var(--color-heading); width: 28px; height: 28px; }
+
+    .bb-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); }
+    .bb-rules ul { margin: 0; padding-left: var(--space-5); }
+    .bb-rules li { margin-bottom: var(--space-2); }
+
+    @media (max-width: 640px) {
+      .bb-page { --bb-side: var(--space-4); padding: var(--space-5) var(--bb-side) var(--space-8); }
+      .bb-type { grid-template-columns: 1fr; gap: var(--space-4); }
+      .bb-type-aa { font-size: 96px; }
+      .bb-table th:first-child { width: 44%; }
+    }
+    @media print {
+      .bb-page { break-after: page; min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover -->
+  <section class="bb-page bb-cover" id="cover">
+    <div class="container">
+      <div class="bb-cover-mark">{{LOGO_MARK_SVG_LIGHT}}</div>
+      <h1>{{BRAND_NAME}}</h1>
+      <p class="text-large">Brand Book</p>
+      <p>{{ONE_LINE_FEEL}}</p>
+    </div>
+    <div class="bb-bottom"><span>Brand Book Guidelines</span><span>{{DATE}}</span></div>
+  </section>
+
+  <!-- Contents -->
+  <section class="bb-page" id="contents">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 02</span></div>
+    <h2 class="bb-title">Table of contents</h2>
+    <nav class="bb-contents">
+      <a href="#logo"><b>01</b> Logo</a>
+      <a href="#colors"><b>02</b> Colors</a>
+      <a href="#typography"><b>03</b> Typography</a>
+      <a href="#icons"><b>04</b> Iconography</a>
+      <a href="#inputs"><b>05</b> Text input fields</a>
+      <a href="#buttons"><b>06</b> Buttons</a>
+      <a href="#selectors"><b>07</b> Selectors</a>
+      <a href="#cards"><b>08</b> Cards</a>
+      <a href="#small"><b>09</b> Small elements</a>
+      <a href="#rules"><b>10</b> Do and don't</a>
+    </nav>
+    <div class="bb-bottom"><span>Contents</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 01 Logo -->
+  <section class="bb-page" id="logo">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 03</span></div>
+    <h2 class="bb-title"><span>01.</span> Logo</h2>
+    <p class="bb-intro">{{LOGO_NOTE}}</p>
+    <div class="bb-logo-grid">
+      <div>
+        <div class="bb-logo-box">{{LOGO_WORDMARK_SVG}}</div>
+        <p class="bb-caption">Logotype: the full name. Use it wherever there is room.</p>
+      </div>
+      <div>
+        <div class="bb-logo-box">{{LOGO_MARK_SVG_LARGE}}</div>
+        <p class="bb-caption">Logo mark: the short version. Use it where space is tight, like a browser tab or an app icon.</p>
+      </div>
+      <div>
+        <div class="bb-logo-box on-dark">{{LOGO_WORDMARK_SVG_LIGHT}}</div>
+        <p class="bb-caption">On dark backgrounds, use the light version.</p>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Logo</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 02 Colors -->
+  <section class="bb-page" id="colors">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 04</span></div>
+    <h2 class="bb-title"><span>02.</span> Colors</h2>
+    <p class="bb-intro">Every color has a job. Using each one only for its job is what makes pages feel like they belong together.</p>
+    <h3 class="bb-group-title">Main colors</h3>
+    <div class="bb-swatches" data-swatches="primary:Primary:Main buttons, links and the one thing you most want people to click.|secondary:Secondary:Supporting areas, avatars and dark panels.|accent:Accent:Small highlights and badges. Use sparingly."></div>
+    <h3 class="bb-group-title">Neutrals</h3>
+    <div class="bb-swatches" data-swatches="background:Background:The page itself.|surface:Surface:Cards, fields and panels that sit on the page.|surface-muted:Soft surface:Tinted sections and quiet backgrounds.|heading:Headings:Titles.|text:Text:Everyday reading text.|text-muted:Quiet text:Hints, captions and less important details.|border:Border:Thin lines between things."></div>
+    <h3 class="bb-group-title">Messages</h3>
+    <div class="bb-swatches" data-swatches="success:Success:Things went well.|warning:Warning:Needs attention soon.|danger:Danger:Errors and actions that delete things."></div>
+    <div class="bb-bottom"><span>Colors</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 03 Typography -->
+  <section class="bb-page" id="typography">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 05</span></div>
+    <h2 class="bb-title"><span>03.</span> Typography</h2>
+    <div class="bb-type">
+      <div>
+        <div class="bb-type-aa" style="font-family: var(--font-heading)">Aa</div>
+        <h3>Headings</h3>
+        <p class="text-muted" style="font-family: var(--font-heading)">A gentle breeze rustled the leaves, whispering secrets of the forest.</p>
+      </div>
+      <div>
+        <p class="bb-type-name" style="font-family: var(--font-heading)" data-font-name="--font-heading"></p>
+        <p class="text-muted">Google Fonts</p>
+        <table class="bb-table" data-type-scale="heading">
+          <thead><tr><th>Name</th><th>Font size</th><th>Line height</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="bb-type">
+      <div>
+        <div class="bb-type-aa" style="font-family: var(--font-body)">Aa</div>
+        <h3>Body</h3>
+        <p class="text-muted">A gentle breeze rustled the leaves, whispering secrets of the forest.</p>
+      </div>
+      <div>
+        <p class="bb-type-name" style="font-family: var(--font-body)" data-font-name="--font-body"></p>
+        <p class="text-muted">Google Fonts</p>
+        <table class="bb-table" data-type-scale="body">
+          <thead><tr><th>Name</th><th>Font size</th><th>Line height</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Typography</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 04 Iconography -->
+  <section class="bb-page" id="icons">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 06</span></div>
+    <h2 class="bb-title"><span>04.</span> Iconography</h2>
+    <p class="bb-intro">Icons come from Lucide, a free set of simple line icons. Always pair an icon with a word unless its meaning is obvious, like a close button.</p>
+    <div class="bb-icons">
+      <div><i data-lucide="house" class="icon"></i>Home</div>
+      <div><i data-lucide="search" class="icon"></i>Search</div>
+      <div><i data-lucide="user" class="icon"></i>Profile</div>
+      <div><i data-lucide="settings" class="icon"></i>Settings</div>
+      <div><i data-lucide="bell" class="icon"></i>Alerts</div>
+      <div><i data-lucide="heart" class="icon"></i>Favorite</div>
+      <div><i data-lucide="shopping-cart" class="icon"></i>Cart</div>
+      <div><i data-lucide="calendar" class="icon"></i>Date</div>
+      <div><i data-lucide="mail" class="icon"></i>Email</div>
+      <div><i data-lucide="plus" class="icon"></i>Add</div>
+      <div><i data-lucide="pencil" class="icon"></i>Edit</div>
+      <div><i data-lucide="trash-2" class="icon"></i>Delete</div>
+      <div><i data-lucide="check" class="icon"></i>Done</div>
+      <div><i data-lucide="x" class="icon"></i>Close</div>
+      <div><i data-lucide="arrow-right" class="icon"></i>Next</div>
+      <div><i data-lucide="menu" class="icon"></i>Menu</div>
+    </div>
+    <div class="bb-bottom"><span>Iconography</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 05 Text input fields -->
+  <section class="bb-page" id="inputs">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 07</span></div>
+    <h2 class="bb-title"><span>05.</span> Text input fields</h2>
+    <p class="bb-intro">Every field has a label above it. Hints go under the field, and so do error messages, which say how to fix the problem.</p>
+    <div class="bb-demo">
+      <div class="bb-demo-box">
+        <h4>Normal</h4>
+        <div class="field">
+          <label for="demo-name">Your name</label>
+          <input class="input" id="demo-name" placeholder="Jamie Rivera">
+          <span class="help">As you'd like it to appear on your profile.</span>
+        </div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>With a problem</h4>
+        <div class="field has-error">
+          <label for="demo-email">Email</label>
+          <input class="input" id="demo-email" value="jamie@" aria-invalid="true">
+          <span class="error-message">Add the part after the @, like jamie@example.com.</span>
+        </div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Longer text and turned off</h4>
+        <div class="field">
+          <label for="demo-note">Message</label>
+          <textarea class="textarea" id="demo-note" placeholder="Tell us a little more"></textarea>
+        </div>
+        <div class="field">
+          <label for="demo-off">Account number</label>
+          <input class="input" id="demo-off" value="Set automatically" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Text input fields</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 06 Buttons -->
+  <section class="bb-page" id="buttons">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 08</span></div>
+    <h2 class="bb-title"><span>06.</span> Buttons</h2>
+    <p class="bb-intro">Use one primary button per screen, for the main thing people came to do. Everything else is secondary or quiet. Button words say what happens, like "Book a table", not "Submit".</p>
+    <div class="bb-demo">
+      <div class="bb-demo-box">
+        <h4>Kinds</h4>
+        <div class="row">
+          <button class="button button-primary">Book a table</button>
+          <button class="button button-secondary">See the menu</button>
+          <button class="button button-quiet">Maybe later</button>
+        </div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Sizes</h4>
+        <div class="row">
+          <button class="button button-primary button-small">Small</button>
+          <button class="button button-primary">Normal</button>
+          <button class="button button-primary button-large">Large</button>
+        </div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>With icons, danger and turned off</h4>
+        <div class="row">
+          <button class="button button-primary"><i data-lucide="plus" class="icon"></i>Add item</button>
+          <button class="button button-danger"><i data-lucide="trash-2" class="icon"></i>Delete</button>
+          <button class="button button-primary" disabled>Not yet</button>
+        </div>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Buttons</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 07 Selectors -->
+  <section class="bb-page" id="selectors">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 09</span></div>
+    <h2 class="bb-title"><span>07.</span> Selectors</h2>
+    <p class="bb-intro">Selectors let people choose. Radio buttons pick one of a few options, checkboxes pick any number, a dropdown picks one of many, and a switch turns a setting on or off right away.</p>
+    <div class="bb-demo">
+      <div class="bb-demo-box">
+        <h4>Dropdown</h4>
+        <div class="field">
+          <label for="demo-size">Party size</label>
+          <select class="select" id="demo-size"><option>2 people</option><option>4 people</option><option>6 or more</option></select>
+        </div>
+        <h4>Segmented choice</h4>
+        <div class="segmented" role="group" aria-label="View">
+          <button aria-pressed="true">Week</button><button aria-pressed="false">Month</button><button aria-pressed="false">Year</button>
+        </div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Checkboxes</h4>
+        <label class="check"><input type="checkbox" checked> Email me updates</label>
+        <label class="check"><input type="checkbox"> Text me reminders</label>
+        <h4>Radio buttons</h4>
+        <label class="radio"><input type="radio" name="demo-plan" checked> Monthly</label>
+        <label class="radio"><input type="radio" name="demo-plan"> Yearly</label>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Switches</h4>
+        <label class="switch"><input type="checkbox" checked><span class="track"></span> Dark mode</label><br>
+        <label class="switch"><input type="checkbox"><span class="track"></span> Show prices with tax</label>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Selectors</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 08 Cards -->
+  <section class="bb-page" id="cards">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 10</span></div>
+    <h2 class="bb-title"><span>08.</span> Cards</h2>
+    <p class="bb-intro">A card groups everything about one thing, like a product, a person or an event. Keep cards in a row the same size and in the same order: picture, title, details, then the action.</p>
+    <div class="grid">
+      <article class="card">
+        <span class="badge">New</span>
+        <h3 style="margin-top: var(--space-3)">Basic card</h3>
+        <p class="text-muted">A short description of one thing, two or three lines at most.</p>
+        <button class="button button-secondary button-small">Learn more</button>
+      </article>
+      <article class="card card-raised">
+        <h3>Raised card</h3>
+        <p class="text-muted">Lifted with a shadow to stand out from the cards around it. Use for the one you recommend.</p>
+        <button class="button button-primary button-small">Choose this</button>
+      </article>
+      <article class="card card-clickable" tabindex="0">
+        <div class="row" style="margin-bottom: var(--space-3)"><span class="avatar">JR</span><strong>Jamie Rivera</strong></div>
+        <p class="text-muted">Clickable card. The whole card is the button, and it lifts when you point at it.</p>
+      </article>
+    </div>
+    <div class="bb-bottom"><span>Cards</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 09 Small elements -->
+  <section class="bb-page" id="small">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 11</span></div>
+    <h2 class="bb-title"><span>09.</span> Small elements</h2>
+    <div class="bb-demo">
+      <div class="bb-demo-box">
+        <h4>Badges</h4>
+        <div class="row"><span class="badge">New</span><span class="badge badge-accent">Popular</span><span class="badge badge-success">Paid</span><span class="badge badge-warning">Due soon</span><span class="badge badge-danger">Overdue</span></div>
+        <h4 style="margin-top: var(--space-5)">Tags</h4>
+        <div class="row"><span class="tag">Vegetarian</span><span class="tag">Outdoor seating</span><span class="tag"><i data-lucide="x" class="icon icon-small"></i>Remove filter</span></div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Avatars</h4>
+        <div class="row"><span class="avatar">JR</span><span class="avatar">AK</span><span class="avatar">MS</span></div>
+        <h4 style="margin-top: var(--space-5)">Progress</h4>
+        <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"><span style="width: 60%"></span></div>
+      </div>
+      <div class="bb-demo-box">
+        <h4>Alerts</h4>
+        <div class="stack">
+          <div class="alert"><i data-lucide="info" class="icon"></i>Your changes are saved automatically.</div>
+          <div class="alert alert-success"><i data-lucide="check" class="icon"></i>Booking confirmed.</div>
+          <div class="alert alert-danger"><i data-lucide="circle-alert" class="icon"></i>That card was declined. Try another one.</div>
+        </div>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Small elements</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <!-- 10 Do and don't -->
+  <section class="bb-page" id="rules">
+    <div class="bb-top"><span class="bb-brand">{{LOGO_MARK_SVG}} {{BRAND_NAME}}</span><span class="bb-page-number">Page 12</span></div>
+    <h2 class="bb-title"><span>10.</span> Do and don't</h2>
+    <div class="bb-rules">
+      <div class="card">
+        <h3><i data-lucide="check" class="icon"></i> Do</h3>
+        <ul>{{DO_LIST}}</ul>
+      </div>
+      <div class="card">
+        <h3><i data-lucide="x" class="icon"></i> Don't</h3>
+        <ul>{{DONT_LIST}}</ul>
+      </div>
+    </div>
+    <div class="bb-bottom"><span>Do and don't</span><span>Brand Book Guidelines</span></div>
+  </section>
+
+  <script>
+    // Read the values from brand.css so this page always matches it.
+    const styles = getComputedStyle(document.documentElement);
+    const value = (name) => styles.getPropertyValue(name).trim();
+
+    document.querySelectorAll("[data-swatches]").forEach((box) => {
+      box.dataset.swatches.split("|").forEach((entry) => {
+        const [key, label, job] = entry.split(":");
+        const color = value("--color-" + key);
+        const card = document.createElement("div");
+        card.className = "bb-swatch";
+        card.innerHTML = '<div class="chip"></div><div class="info"><strong></strong><code></code><p></p></div>';
+        card.querySelector(".chip").style.background = color;
+        card.querySelector("strong").textContent = label;
+        card.querySelector("code").textContent = color.toUpperCase();
+        card.querySelector("p").textContent = job;
+        box.appendChild(card);
+      });
+    });
+
+    document.querySelectorAll("[data-font-name]").forEach((el) => {
+      el.textContent = value(el.dataset.fontName).split(",")[0].replace(/["']/g, "");
+    });
+
+    const scales = {
+      heading: [
+        ["Heading 1", "--text-h1", "--leading-heading", "var(--weight-heading)"],
+        ["Heading 2", "--text-h2", "--leading-heading", "var(--weight-heading)"],
+        ["Heading 3", "--text-h3", "--leading-body", "var(--weight-heading)"],
+        ["Heading 4", "--text-h4", "--leading-body", "var(--weight-heading)"]
+      ],
+      body: [
+        ["Body large", "--text-large", "--leading-body", "400"],
+        ["Body", "--text-body", "--leading-body", "400"],
+        ["Body bold", "--text-body", "--leading-body", "700"],
+        ["Small", "--text-small", "--leading-body", "400"]
+      ]
+    };
+    document.querySelectorAll("[data-type-scale]").forEach((table) => {
+      const kind = table.dataset.typeScale;
+      const font = kind === "heading" ? "var(--font-heading)" : "var(--font-body)";
+      scales[kind].forEach(([name, size, leading, weight]) => {
+        const row = document.createElement("tr");
+        row.innerHTML = "<td></td><td></td><td></td>";
+        const sample = row.children[0];
+        sample.textContent = name;
+        sample.style.fontFamily = font;
+        sample.style.fontSize = "var(" + size + ")";
+        sample.style.fontWeight = weight;
+        sample.style.lineHeight = "1.3";
+        row.children[1].textContent = value(size);
+        row.children[2].textContent = Math.round(parseFloat(value(leading)) * 100) + "%";
+        table.querySelector("tbody").appendChild(row);
+      });
+    });
+
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>
