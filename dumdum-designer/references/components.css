@@ -208,6 +208,12 @@ a:hover { color: var(--color-primary-hover); }
 .card-image { margin: calc(var(--space-6) * -1) calc(var(--space-6) * -1) var(--space-5); border-radius: var(--radius-card) var(--radius-card) 0 0; overflow: hidden; }
 .card-image img { display: block; width: 100%; height: auto; }
 
+/* Keep small pieces at their natural width inside .stack and other columns */
+.button,
+.badge,
+.tag,
+.segmented { width: fit-content; }
+
 /* Small elements: badges, tags, avatars, alerts, dividers, progress */
 .badge {
   display: inline-flex;

@@ -16,6 +16,8 @@ Shared guides (read each one when you reach the step that needs it):
 - `${CLAUDE_PLUGIN_ROOT}/references/build-the-brandbook.md` (only if there's no brand yet)
 - `${CLAUDE_PLUGIN_ROOT}/references/prototype-template.html`: the starting point for every prototype file
 - `${CLAUDE_PLUGIN_ROOT}/references/design-checklist.md`: the self-check before showing anything
+- `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: reuse existing components and design elements before making new ones
+- `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: check the result in a real browser before showing it
 
 ---
 
@@ -48,7 +50,7 @@ Look in `design/pages/` for a plan for this page.
 
   Then list the sections you'll build, in order, in a few lines, and get an OK.
 
-If there's a real app, look at its existing pages for the header, menu and footer, and copy their content (links, logo position) into the prototype so it feels like part of the same site.
+Then follow `reuse-first.md`. Before designing anything, list what already exists that this page can reuse: the real app's header, menu, footer, card styles and section patterns, the brandbook's building blocks, and pieces from the person's other prototypes. Tell them in a line or two: "I'll reuse your home page's header and footer and your brand's cards, so this page feels like part of the same site."
 
 ## Step 4: Ask how many versions
 
@@ -71,6 +73,7 @@ Make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.htm
 
 Start each file from `prototype-template.html` and follow these rules:
 
+- **Reuse before you make.** Use the pieces you listed in Step 3 with the same markup. Only make a new piece when nothing existing fits, and then follow the "When something new is needed" rules in `reuse-first.md`. Every version uses the same pieces, so the versions differ in direction, not in style.
 - **Use the brand, never one-off styles.** Link `../../design/brand.css`. Use its building-block classes (`button`, `card`, `field`, `input`, `badge` and the rest) and its values (`var(--color-...)`, `var(--space-...)`). The small `<style>` block is for page layout only (columns, positioning, sizes of areas). It must not contain any color codes or font names.
 - **Follow `brand.md`:** the do and don't list and the signature touch.
 - **Real words.** Write real headlines, descriptions and button words that fit their business. Never use "lorem ipsum". Mark what they still need to decide in brackets: `[your price here]`, `[customer quote]`.
@@ -80,7 +83,7 @@ Start each file from `prototype-template.html` and follow these rules:
 - **Accessible.** Every field has a label, every image box has a description, everything clickable works with the keyboard, and headings go in order (h1, then h2, and so on).
 - **Self-contained except for the brand.** Only `brand.css`, Google Fonts (through `brand.css`) and the Lucide icons. Nothing to install.
 
-Before showing anything, go through `design-checklist.md` yourself and fix what you find. If a browser tool is available in this session, look at each version at phone (375px) and desktop (1280px) width and fix anything broken.
+Before showing anything, go through `design-checklist.md` yourself, then follow `look-at-it.md`. Open every version in a real browser (Claude in Chrome or whichever browser tool is available), check phone, tablet and desktop widths, click the main interactions, and compare against the brandbook and the pieces you reused. Fix what you find and look again.
 
 Save and commit following `where-files-go.md`. Never commit on their working branch.
 
@@ -93,7 +96,7 @@ Open each version in their browser (Windows `start "" "<path>"`, Mac `open "<pat
 > - **Option A** leads with [what], so [why it might work].
 > - **Option B** leads with [what], so [why it might work].
 >
-> Everything you see uses your brandbook, so the colors, fonts and buttons match your brand."
+> Everything you see uses your brandbook, so the colors, fonts and buttons match your brand. I reused [what you reused], and I checked both on phone, tablet and desktop sizes before showing you. [Anything you fixed, or anything you couldn't.]"
 
 Add one short lesson tied to a choice you made, for example: "Notice there's only one bright button per screen. That's on purpose: when everything shouts, nothing gets heard."
 
@@ -115,6 +118,8 @@ Then:
 
 - **Prototype, not the real app.** Never edit the person's real app files. Prototypes live only in `prototypes/`.
 - **Never on their working branch.** Follow `where-files-go.md`.
+- **Reuse first.** Existing pieces from the real app, the brandbook and other prototypes come before anything new. See `reuse-first.md`.
 - **The brand is the source of truth.** If a page needs a building block the brand doesn't have, build it from brand values and mention it. Never introduce new colors or fonts.
+- **Look before you show.** Every version is checked in a real browser at phone, tablet and desktop widths. See `look-at-it.md`.
 - **Versions are directions, not color swaps.**
 - **Ask how many versions.** Don't decide for them.

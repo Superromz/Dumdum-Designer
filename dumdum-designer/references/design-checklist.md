@@ -2,6 +2,8 @@
 
 Used by `check-design`, and by every other skill as a final self-check before showing work. Each item is written so it can be explained to someone who has never designed anything.
 
+Check these by looking at the page in a real browser (see `look-at-it.md`), not only by reading the code.
+
 Sort what you find into three groups when reporting:
 
 - **Fix first:** people can't read it, can't use it, or it breaks on a phone.
@@ -42,6 +44,14 @@ Sort what you find into three groups when reporting:
 - **Consistent corners.** Rounding comes from the brand's radius values, not a mix of sharp and round.
 - **Logo** is the brand's logo file, not stretched, recolored or squeezed.
 - **Follows the do and don't list** in `brand.md`.
+
+## Consistent and reused
+
+- **Existing pieces reused.** Headers, menus, footers, cards, forms and sections that already exist in the real app, the brandbook or other prototypes are reused with the same markup, not rebuilt slightly differently (see `reuse-first.md`).
+- **Same job, same look.** Things that do the same job look identical everywhere on the page and across pages: one style of main button, one card style per kind of content, one icon size per context.
+- **Matches the other pages.** Put the page next to the brandbook and the person's other prototypes. Anything that looks different for no reason is a problem.
+- **Rows line up.** Cards in a row have the same height and the same inner order (picture, title, details, action).
+- **New pieces fit the family.** Anything new uses the same rounding, borders, shadows, text sizes and spacing as the existing pieces.
 
 ## Feels finished
 

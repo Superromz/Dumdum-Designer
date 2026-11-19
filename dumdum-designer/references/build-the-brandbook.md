@@ -83,10 +83,10 @@ Remove the HTML comment at the top of the template. Check that no `{{` is left.
 
 ## 5. Look at it
 
-Open `design/brandbook.html` in the browser:
+Before showing the person, follow `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`. Open `design/brandbook.html` in a real browser yourself, at phone, tablet and desktop widths. Check every section: the swatches and type tables filled in, the fonts loaded, the icons appeared, the logo renders in each place it's used, and nothing overflows. Fix what you find and look again.
+
+Then open it in the person's own browser:
 
 - Windows: `start "" "<full path>"`
 - Mac: `open "<full path>"`
 - Linux: `xdg-open "<full path>"`
-
-If a browser tool is available in this session, look at it yourself first, at both phone and desktop width, and fix anything broken before showing the person.

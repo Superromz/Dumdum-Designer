@@ -14,6 +14,8 @@ Shared guides:
 - `${CLAUDE_PLUGIN_ROOT}/references/design-checklist.md`: what to check
 - `${CLAUDE_PLUGIN_ROOT}/references/find-the-brand.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
+- `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: how to look at the page in a real browser
+- `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: what consistent reuse looks like
 
 ---
 
@@ -42,8 +44,9 @@ Go through every item in `design-checklist.md`.
 
 - **Read the actual file.** Work from the real code, not assumptions.
 - **Calculate contrast** for real text and background pairs from the actual color values. Don't eyeball it.
-- **Look at it if you can.** If a browser tool is available in this session, open the page at phone width (375px) and desktop width (1280px), take a screenshot at each, and look for sideways scrolling, overlaps, cramped spacing and tiny tap targets. If no browser tool is available, say: "I checked the code carefully. To see the phone version yourself, make your browser window very narrow."
+- **Look at it in a real browser, always.** Follow `look-at-it.md`: open the page with Claude in Chrome or whichever browser tool is available, at phone (375px), tablet (768px) and desktop (1280px) widths. Screenshot the whole page at each size, click the main interactions, and read the console for errors. Only fall back to code-only checking when no browser tool exists, and say so.
 - **Check the brand.** Look for color codes or fonts that aren't in `brand.css`, one-off button or card styles, and anything against the do and don't list in `brand.md`.
+- **Check for reuse.** Following `reuse-first.md`, flag any piece that duplicates something that already exists in a slightly different style. That includes a second button style for the same job, a card that doesn't match the brand's cards, and a header that differs from the other prototypes or the real app. Each one should become the existing piece.
 
 ## Step 5: Report
 
@@ -71,7 +74,7 @@ Then:
 
 - Copy the newest version to the next number (`v3.html` becomes `v4.html`) and fix only the chosen items, in the new file. **Never edit an older version.**
 - For the brandbook, fix `brand.css` or `brand.md` and rerun the contrast check from `${CLAUDE_PLUGIN_ROOT}/references/build-the-brandbook.md`.
-- Recheck the items you fixed.
+- Recheck the items you fixed in a real browser, following `look-at-it.md`, and make sure the fixes didn't break anything else.
 - Save and commit following `where-files-go.md`. Never commit on their working branch.
 - Open the new version and list what changed, one line per fix.
 
