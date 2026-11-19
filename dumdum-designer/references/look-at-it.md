@@ -19,7 +19,7 @@ Browser tools often can't open files directly (addresses starting with `file://`
 
 - Start a small local web server in the project folder (you'll be on the design branch, see `where-files-go.md`) and run it in the background. Use whichever is available: `python -m http.server 8765 --bind 127.0.0.1`, `python3 -m http.server 8765 --bind 127.0.0.1`, or `npx --yes http-server -p 8765 -a 127.0.0.1`. If port 8765 is busy, pick another. Don't use the app's own dev server: the design files don't depend on the app.
 - Open `http://127.0.0.1:8765/design/brandbook.html` or `http://127.0.0.1:8765/prototypes/<page>/<file>.html`.
-- When finished, stop the server and close the tabs you opened.
+- When finished, close the tabs you opened and stop the server. If you started it as a background task, stop it with the tool that manages background tasks (for example TaskStop), not a shell one-liner. Then check the port is really free (for example, the page no longer loads, or nothing is listening on 8765) before saying it's stopped.
 
 Tell the person in one line what you're doing: "I'm opening the page in a browser to check it myself before showing you."
 
@@ -38,6 +38,7 @@ Take a screenshot at each size, scrolling through the whole page, and look at it
 - **Overflow:** anything sticking out sideways or cut off, or a page that scrolls sideways. Also check with JavaScript: `document.documentElement.scrollWidth > innerWidth` must be false at every size.
 - **Overlaps:** text on top of text, buttons covering content, sticky headers hiding headings.
 - **Spacing:** gaps that are uneven between similar things, or cramped against edges. Spacing should come from the brand's spacing steps.
+- **Too much empty space:** a section much taller than its content, a footer or next section far below the last element, or a screenshot that is mostly blank. Generous breathing room is good. Screens of nothing are not. Compare each section's height with the height of what's inside it.
 - **Alignment:** things that should line up along a shared edge but don't. Headings, text and buttons that drift.
 - **Consistency:** the same kind of thing styled two different ways (two button styles for the same job, cards of different heights in one row, mixed corner rounding, mixed icon sizes).
 - **Order of importance:** in a 5-second glance, the main message and the main button stand out first.
