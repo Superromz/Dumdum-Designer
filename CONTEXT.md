@@ -34,7 +34,7 @@ The five steps:
 ## Rules Every Skill Follows
 
 - **The brand comes first.** Every skill looks for an existing brand or design system before doing anything (`references/find-the-brand.md`). An existing brand is used and never overwritten.
-- **The person's project stays safe.** Design files live in `design/` and `prototypes/`. In a git project they are committed on a separate throwaway branch, `dumdum-designer`, in its own folder, never on the person's working branch unless they explicitly ask (`references/where-files-go.md`). The real app's files are never edited.
+- **The person's project stays safe.** Design files live in `design/` and `prototypes/`. In a git project they are committed on a throwaway branch in the same project (`dumdum-designer/<name>`), never on the person's working branch unless they explicitly ask. The branch is dropped once the design is approved (`references/where-files-go.md`). Design files are plain HTML and CSS that don't depend on the app's code, so this works in any project. The real app's files are never edited.
 - **Reuse first.** Existing components and design elements from the real app, the brandbook and other prototypes are reused before anything new is made (`references/reuse-first.md`).
 - **Look before showing.** Every page that is made or changed is checked in a real browser at phone, tablet and desktop widths before the person sees it (`references/look-at-it.md`).
 

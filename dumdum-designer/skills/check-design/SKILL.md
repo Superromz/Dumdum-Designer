@@ -25,7 +25,7 @@ Shared guides:
 
 ## Step 2: Find what to check
 
-Look in `prototypes/` (in the design copy first, see `where-files-go.md`) and in `design/`.
+Look in `prototypes/` and `design/` on the current branch, and in any `dumdum-designer/...` design branches (see `where-files-go.md`). Reading works without switching. Switch to the design branch only if you end up fixing something.
 
 - If they named a page, check its newest version.
 - If there's only one page, check its newest version.

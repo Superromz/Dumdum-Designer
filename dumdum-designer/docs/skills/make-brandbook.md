@@ -21,5 +21,5 @@ Three files in a `design/` folder:
 ## Good to Know
 
 - Text colors are always checked for readability. If a color has to be adjusted so text is easy to read, Dumdum tells you which one and why.
-- If your project uses git, the brandbook is saved on a separate throwaway branch in its own folder, never on the branch you're working on.
+- If your project uses git, the brandbook is saved on a throwaway design branch inside your project, never on the branch you're working on. When you're done, you can drop the branch, or ask to keep the brandbook in your project so future pages reuse it.
 - You can run it again any time to change your brand.

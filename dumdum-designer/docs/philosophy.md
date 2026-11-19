@@ -88,7 +88,8 @@ But a prototype is not the real app. It's a model to look at, click through and 
 
 - It never edits the person's real app files.
 - Design work lives in its own folders, `design/` and `prototypes/`.
-- In a git project, design work is committed on a separate throwaway branch, never on the branch the person is working on, unless they explicitly ask.
+- In a git project, design work is committed on a throwaway branch in the same project, never on the branch the person is working on unless they explicitly ask, and the branch is dropped once the design is approved.
+- Design files are plain HTML and CSS that don't depend on the app's code, so the same approach works in any project, whatever it's built with.
 - Every change is saved as a new version, so nothing is ever lost.
 
 This is what makes it safe to experiment. Trying a bold idea costs nothing when the old version is one sentence away.

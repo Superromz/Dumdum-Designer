@@ -23,4 +23,4 @@ Nothing changes until you say so. You can approve all fixes, just the "fix first
 ## Good to Know
 
 - It can also check your brandbook itself.
-- It never edits your real app, and in a git project it saves fixes on the separate throwaway branch, never on the branch you're working on.
+- It never edits your real app, and in a git project it saves fixes on the throwaway design branch inside your project, never on the branch you're working on.
