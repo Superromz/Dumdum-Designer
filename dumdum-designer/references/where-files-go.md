@@ -11,7 +11,7 @@ Design files are plain HTML and CSS that don't depend on the person's app. They 
 All design work lives in two folders at the root of the project:
 
 - `design/` holds the brandbook: `brandbook.html`, `brand.css`, `brand.md`, the logo files in `design/logo/`, and page plans in `design/pages/`.
-- `prototypes/` holds one folder per page, like `prototypes/pricing/`, with the options, the compare screen and the versions inside (`option-a.html`, `compare.html`, `v1.html`, `v2.html`).
+- `prototypes/` holds one folder per page, like `prototypes/pricing/`, with the options, the compare screen, the versions, mockups of existing pages it changes and the change list inside (`option-a.html`, `compare.html`, `v1.html`, `touches/account.html`, `changes.md`).
 
 Prototypes link to the brand with a relative path: `<link rel="stylesheet" href="../../design/brand.css">`. Never copy the brand values into a prototype.
 

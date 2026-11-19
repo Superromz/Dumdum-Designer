@@ -14,6 +14,7 @@ Shared guides:
 - `${CLAUDE_PLUGIN_ROOT}/references/find-the-brand.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`
+- `${CLAUDE_PLUGIN_ROOT}/references/ripple-effects.md`
 
 ---
 
@@ -29,6 +30,7 @@ Quietly, before asking anything:
 - Check whether there's a real app in the project. If there is, look at its existing pages: what's in the header and the menu, and what the footer has. A new page should fit in with them. Note it in one line: "Your app has a top menu with Home, Menu and Contact, so the new page will use the same menu."
 - Look in `design/pages/` for an existing plan for this page. If there is one, offer to continue it instead of starting over.
 - Follow `reuse-first.md`: note the pieces that already exist and that the new page can reuse. That means sections and components in the real app, the brandbook's building blocks, and pieces in other page plans or prototypes (a header, a pricing card, a testimonial strip). In the plan, name the existing piece each section reuses, so the prototype is built from it.
+- Follow steps 1 and 2 of `ripple-effects.md`: find what this page touches elsewhere (how people get to it, shared pieces it changes, new building blocks). Include the list when you show the plan in Step 4 and confirm it.
 
 ## Step 3: The interview
 
@@ -97,6 +99,7 @@ The file contains:
 - **Sections:** the numbered list from Step 4, with draft words for each heading and button, plus the building blocks each section uses (card, button, text field, selector, badge, alert)
 - **Sketch:** the text sketch, plus the phone note
 - **Fits with:** the existing header, menu or footer to reuse, if there's a real app
+- **Also changes:** the ripples from `ripple-effects.md`, meaning each existing page or component this page touches and how ("Main menu: add a 'Dashboard' link")
 - **Open questions:** anything in brackets that still needs deciding
 
 ## Step 6: Explain what happened

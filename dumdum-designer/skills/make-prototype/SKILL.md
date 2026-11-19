@@ -18,6 +18,7 @@ Shared guides (read each one when you reach the step that needs it):
 - `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html`: one screen to switch between options
 - `${CLAUDE_PLUGIN_ROOT}/references/design-checklist.md`: the self-check before showing anything
 - `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: reuse existing components and design elements before making new ones
+- `${CLAUDE_PLUGIN_ROOT}/references/ripple-effects.md`: design the changes this work causes in other existing pages and components
 - `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: check the result in a real browser before showing it
 
 ---
@@ -53,6 +54,8 @@ Look in `design/pages/` for a plan for this page.
 
 Then follow `reuse-first.md`. Before designing anything, list what already exists that this page can reuse: the real app's header, menu, footer, card styles and section patterns, the brandbook's building blocks, and pieces from the person's other prototypes. Tell them in a line or two: "I'll reuse your home page's header and footer and your brand's cards, so this page feels like part of the same site."
 
+Then follow steps 1 and 2 of `ripple-effects.md`: work out which existing pages and components this page touches (how people get to it, shared pieces it changes, new building blocks) and confirm the list with the person in one message. If the page plan already lists them, use that list.
+
 ## Step 4: Ask how many versions
 
 > "How many versions would you like to see? I can make **1**, **2** or **3** different takes so you can compare them side by side. I'd suggest **2**: enough to compare, without too much to choose from."
@@ -74,6 +77,7 @@ Make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.htm
 
 Start each file from `prototype-template.html` and follow these rules:
 
+- **Design the ripples too.** Follow step 3 of `ripple-effects.md`: changed shared pieces appear in their new form in every option, other prototypes using them get a new version, existing pages that change get a small `touches/` prototype, and the brandbook gets any new or changed building block. Write `changes.md` (step 4).
 - **Reuse before you make.** Use the pieces you listed in Step 3 with the same markup. Only make a new piece when nothing existing fits, and then follow the "When something new is needed" rules in `reuse-first.md`. Every version uses the same pieces, so the versions differ in direction, not in style.
 - **Use the brand, never one-off styles.** Link `../../design/brand.css`. Use its building-block classes (`button`, `card`, `field`, `input`, `badge` and the rest) and its values (`var(--color-...)`, `var(--space-...)`). The small `<style>` block is for page layout only (columns, positioning, sizes of areas). It must not contain any color codes or font names.
 - **Follow `brand.md`:** the do and don't list and the signature touch.
@@ -106,7 +110,7 @@ Open the compare screen in their browser (or the single option, if there's only 
 > - **Option A** leads with [what], so [why it might work].
 > - **Option B** leads with [what], so [why it might work].
 >
-> Everything you see uses your brandbook, so the colors, fonts and buttons match your brand. I reused [what you reused], and I checked both on phone, tablet and desktop sizes before showing you. [Anything you fixed, or anything you couldn't.]"
+> Everything you see uses your brandbook, so the colors, fonts and buttons match your brand. I reused [what you reused], and [the ripples you designed, e.g. 'added the Dashboard link to the menu in your other prototypes']. Everything that changes in your existing app is listed in `changes.md`. I checked both on phone, tablet and desktop sizes before showing you. [Anything you fixed, or anything you couldn't.]"
 
 Add one short lesson tied to a choice you made, for example: "Notice there's only one bright button per screen. That's on purpose: when everything shouts, nothing gets heard."
 
