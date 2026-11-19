@@ -137,7 +137,7 @@ Save and commit following `where-files-go.md`. Never commit on their working bra
 
 Open the compare screen in their browser (or the single option, if there's only one). For in-app prototypes, keep the app's preview running while they look, and serve the compare screen as `look-at-it.md` describes. Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`. Then explain briefly:
 
-> "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. (With several pieces: pick a piece at the top first, then flip through its options. The up and down arrow keys switch pieces, and the line under the bar shows what you've got chosen for each piece.) The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
+> "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. When you like one, press **Pick this one**. Picks are shown with a check mark and listed under the bar. (With several pieces: choose a piece at the top, flip through its options, and pick one. It then moves you to the next piece. The up and down arrow keys switch pieces. Once every piece has a pick, your picks open together on one screen.) When you're happy, just tell me "done". I'll read your picks from the screen. The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
 >
 > - **Option A** leads with [what], so [why it might work].
 > - **Option B** leads with [what], so [why it might work].
@@ -148,17 +148,19 @@ Add one short lesson tied to a choice you made, for example: "Notice there's onl
 
 ## Step 7: Narrow it down
 
-After they've flipped through the options, give them clear choices, one message:
+**Read the picks from the screen, don't make them type them.** The compare screen keeps the picks in its address (`...#piece=1&option=2&picks=2,1,1`, where 0 means not picked yet) and in `window.dumdumPicks()`. When they say "done", or anything that suggests they've chosen, read the picks with the browser tool by running `window.dumdumPicks()` on the open compare page. It returns each piece with the label and file that was picked, or `null` if it wasn't. Use that rather than the page address, which browser tools may block. Then confirm them back in one line: "Got it: page B, Home entry A, email A." Only if no browser tool is available, ask them to press **Copy my picks** and paste the line.
+
+If they come back without having picked, give them clear choices, one message:
 
 > "What would you like to do?
-> 1. **Pick one** to keep working on (with several pieces: one for each piece, like 'page B, Home A, email A'). It's also fine to say 'A, but with B's top section'.
+> 1. **Pick one** on the screen with **Pick this one** (with several pieces: one for each piece), then tell me "done". It's also fine to say 'A, but with B's top section'.
 > 2. **Add another option**, for example 'one more that's more playful' or 'a version with photos first'.
 > 3. **Remove options** you don't like, so it's easier to compare the rest.
 > 4. **None of these feel right.** Tell me what feels off and I'll try new directions."
 
 - **Pick one:** standalone, copy it to `prototypes/<page-name>/v1.html` and commit, leaving the option files and the compare screen in place. In the app, make the picked option the real route (for example `/dashboard`), remove the other option routes, and commit as "v1" (`prototype-in-app.md` section 5).
 - **A mix:** build the mix as version 1 (standalone `v1.html`, or the real route in the app), explain what came from where, and commit.
-- **Several pieces:** they can pick piece by piece, in any order. A piece is done once it has a pick. When every piece has one, **put the winners together** as version 1 of the whole design: the picked page, Home with the picked entry leading to it, and the picked email, all linked up. In the app, the picks become the real routes and edits, and the other option routes are removed. Standalone, save them as `v1.html` in each piece's folder, with links between them. Check the combination in a real browser (`look-at-it.md`), because pieces picked separately can clash when combined (for example two headings saying the same thing). Fix that, then commit and show it.
+- **Several pieces:** they pick piece by piece on the compare screen, in any order. A piece is done once it has a pick, and the screen shows the picks together automatically once every piece has one. When they say done, **put the winners together** as version 1 of the whole design: the picked page, Home with the picked entry leading to it, and the picked email, all linked up. In the app, the picks become the real routes and edits, and the other option routes are removed. Standalone, save them as `v1.html` in each piece's folder, with links between them. Check the combination in a real browser (`look-at-it.md`), because pieces picked separately can clash when combined (for example two headings saying the same thing). Fix that, then commit and show it.
 - **Add an option:** describe its direction in one line and get an OK. Build it as the next letter (`option-c.html`, in that piece's folder when there are several pieces) with the same rules as Step 5, look at it (`look-at-it.md`), add it to that piece's `options` in the `PIECES` list in `compare.html`, commit, and reopen the compare screen showing the new one (`compare.html#1-3` opens the first piece's third option). Then offer these choices again.
 - **Remove options:** confirm which ones in a sentence ("I'll remove Option B and keep A and C"), then take them off that piece's `options` in `compare.html` and delete their files. Don't rename the remaining files. Commit, reopen the compare screen, and offer these choices again. They're on the throwaway design branch, so say: "They're still in the design history if you change your mind." If only one option is left for a piece, treat it as picked.
 - **None feel right:** ask what feels off, one question at a time, then add new options as above.
