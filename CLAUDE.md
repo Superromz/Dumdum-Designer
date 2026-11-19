@@ -27,7 +27,11 @@ Each SKILL.md starts with a header block (`name` matching the folder, and a `des
 Every skill must:
 
 - look for an existing brand first (`references/find-the-brand.md`), and never overwrite one;
-- save following `references/where-files-go.md`, which means never committing on the person's working branch unless they explicitly ask.
+- save following `references/where-files-go.md`, which means never committing on the person's working branch unless they explicitly ask;
+- reuse existing components and design elements before making new ones (`references/reuse-first.md`);
+- check any page it makes or changes in a real browser (Claude in Chrome or whichever browser tool is available) before showing it (`references/look-at-it.md`).
+
+When you change the templates or starter looks in this repo, check them in a real browser too, at phone and desktop widths.
 
 ## Adding a New Skill
 

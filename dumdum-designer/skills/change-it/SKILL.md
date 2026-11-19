@@ -14,6 +14,8 @@ Shared guides:
 - `${CLAUDE_PLUGIN_ROOT}/references/find-the-brand.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/design-checklist.md`
+- `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`
+- `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`
 
 ---
 
@@ -78,8 +80,9 @@ If a request would make something hard to read or use (pale gray text, a tiny bu
 
 - Copy the newest version to the next number (`v3.html` becomes `v4.html`) and make the changes in the new file only. **Never edit an older version.**
 - Use brand classes and values only, as in the original.
+- Reuse first (`reuse-first.md`). If the change needs a new piece, like a testimonial strip or a comparison table, check whether the real app, the brandbook or another prototype already has one, and use that markup.
 - Change only what was asked. Don't sneak in other "improvements". If you notice something else worth fixing, mention it at the end instead.
-- Run through `design-checklist.md` for the parts you touched. If a browser tool is available, check phone and desktop width.
+- Run through `design-checklist.md` for the parts you touched, then follow `look-at-it.md`: open the new version in a real browser at phone, tablet and desktop widths, compare it with the previous version, and make sure nothing else moved or broke. Fix and look again before showing it.
 
 Save and commit following `where-files-go.md`. Never commit on their working branch.
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.0
+
+- Every skill that makes or changes a page now checks the result in a real browser (Claude in Chrome or whichever browser tool is available) at phone, tablet and desktop widths, and fixes what it finds before showing it. It looks for overflow, overlaps, uneven spacing, misalignment, inconsistent styles, fonts or icons that didn't load, console errors, and broken interactions.
+- Every skill now reuses existing components and design elements first, from the real app, the brandbook and the person's other prototypes, before making anything new. Anything new is built to match the existing family, and can be added to the brandbook.
+- `check-design` now flags duplicated pieces that should reuse an existing one.
+- The design checklist has a new "Consistent and reused" section.
+
 ## 2.0.0
 
 DumDum Skills is now **Dumdum Designer**, focused entirely on designing and prototyping new pages.

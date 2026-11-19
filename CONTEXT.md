@@ -27,10 +27,12 @@ Everything is inside the `dumdum-designer/` directory:
 4. **change-it** - Apply plain-language feedback, saving each round as a new version.
 5. **check-design** - Check readability, phone layout, usability and brand fit, and fix with permission.
 
-## Two Rules Every Skill Follows
+## Rules Every Skill Follows
 
 - **The brand comes first.** Every skill looks for an existing brand or design system before doing anything (`references/find-the-brand.md`). An existing brand is used and never overwritten.
 - **The person's project stays safe.** Design files live in `design/` and `prototypes/`. In a git project they are committed on a separate throwaway branch, `dumdum-designer`, in its own folder, never on the person's working branch unless they explicitly ask (`references/where-files-go.md`). The real app's files are never edited.
+- **Reuse first.** Existing components and design elements from the real app, the brandbook and other prototypes are reused before anything new is made (`references/reuse-first.md`).
+- **Look before showing.** Every page that is made or changed is checked in a real browser at phone, tablet and desktop widths before the person sees it (`references/look-at-it.md`).
 
 ## What Gets Made in the Person's Project
 

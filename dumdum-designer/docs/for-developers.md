@@ -22,6 +22,8 @@ dumdum-designer/
     where-files-go.md       where files are saved, and the throwaway-branch rule
     build-the-brandbook.md  how answers become brand.css, brand.md, the logo and brandbook.html
     design-checklist.md     what check-design checks, and every skill's self-check
+    reuse-first.md          reuse existing components and design elements before making new ones
+    look-at-it.md           check every result in a real browser before showing it
     brand-md-template.md    template for design/brand.md
     brandbook-template.html template for design/brandbook.html
     prototype-template.html starting point for every prototype file
@@ -91,6 +93,7 @@ Tips:
 - **Spell out the interview.** Say what to ask, in what order, with concrete options.
 - **Show example wording** in quote blocks, so the tone is clear.
 - **Include guardrails.** Never overwrite an existing brand. Never commit on the person's working branch. Never edit the real app.
+- **Reuse, then look.** Any skill that makes or changes a page reuses existing pieces first (`reuse-first.md`) and checks the result in a real browser before showing it (`look-at-it.md`).
 - **Describe the output concretely:** which files, where, and what the person sees.
 
 

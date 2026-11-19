@@ -15,6 +15,8 @@ Shared guides (read each one when you reach the step that needs it):
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`: where to save, and the throwaway-branch rule
 - `${CLAUDE_PLUGIN_ROOT}/references/build-the-brandbook.md`: how to build the files
 - `${CLAUDE_PLUGIN_ROOT}/references/starter-looks/`: the Calm, Bold and Playful starting points
+- `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: match the components the project already uses
+- `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: check the brandbook in a real browser before showing it
 
 ---
 
@@ -88,11 +90,15 @@ Open `design/brandbook.html` in their browser. Then walk them through it briefly
 
 If the logo is a placeholder, remind them in one line how to swap it.
 
+You will already have checked it yourself in a real browser (step 5 of `build-the-brandbook.md`). Say so in one line, and mention anything you fixed: "I checked it on phone, tablet and desktop sizes first."
+
+If their project already has components (buttons, cards, form fields), say how the brandbook matches them, following `reuse-first.md`: "Your app's buttons are fully rounded with no border, so the brandbook's buttons are too."
+
 ## Step 7: Ask for feedback
 
 > "How does it feel? I can change any color, font or shape. Just say something like 'warmer colors' or 'rounder buttons'."
 
-Apply changes the same way (explain, confirm, update the files, recheck contrast, commit, reopen). When they're happy:
+Apply changes the same way (explain, confirm, update the files, recheck contrast, look at it again in a real browser, commit, reopen). When they're happy:
 
 > "Your brand is ready. When you want to design a new page, try `/dumdum-designer:sketch-page` to plan it, or go straight to `/dumdum-designer:make-prototype`."
 

@@ -13,6 +13,7 @@ Shared guides:
 
 - `${CLAUDE_PLUGIN_ROOT}/references/find-the-brand.md`
 - `${CLAUDE_PLUGIN_ROOT}/references/where-files-go.md`
+- `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`
 
 ---
 
@@ -27,6 +28,7 @@ Quietly, before asking anything:
 - Follow `find-the-brand.md`, so you know whether a brand exists. You only need it for naming building blocks, so don't make a fuss if there isn't one.
 - Check whether there's a real app in the project. If there is, look at its existing pages: what's in the header and the menu, and what the footer has. A new page should fit in with them. Note it in one line: "Your app has a top menu with Home, Menu and Contact, so the new page will use the same menu."
 - Look in `design/pages/` for an existing plan for this page. If there is one, offer to continue it instead of starting over.
+- Follow `reuse-first.md`: note the pieces that already exist and that the new page can reuse. That means sections and components in the real app, the brandbook's building blocks, and pieces in other page plans or prototypes (a header, a pricing card, a testimonial strip). In the plan, name the existing piece each section reuses, so the prototype is built from it.
 
 ## Step 3: The interview
 
