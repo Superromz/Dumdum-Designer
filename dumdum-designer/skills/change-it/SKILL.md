@@ -51,7 +51,7 @@ Vague feedback is normal. Instead of asking an open question again, offer two or
 
 If they'd rather **see a few alternatives** than one change ("show me some other ways to do the top section"), make two or three versions of the change as options next to the newest version (`v4-option-a.html`, `v4-option-b.html`). Build a compare screen for them from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html` (`compare-v4.html`), and let them switch, add or remove options exactly as in Step 7 of `${CLAUDE_PLUGIN_ROOT}/skills/make-prototype/SKILL.md`. The one they pick becomes the next version.
 
-If they ask to **go back** ("I liked the last one better"), copy the version they want forward as the next version number instead of deleting anything. Say: "I've brought back version 2 as version 4, so your history stays complete."
+If they ask to **go back** ("I liked the last one better"), bring the version they want forward as the next version instead of deleting anything: standalone, copy that file to the next number; in the app, restore the page's files from that version's commit and commit them as the next version (`${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md` section 5). Say: "I've brought back version 2 as version 4, so your history stays complete."
 
 ## Step 4: Explain the plan
 
@@ -81,7 +81,8 @@ If a request would make something hard to read or use (pale gray text, a tiny bu
 
 ## Step 5: Make the change
 
-- Copy the newest version to the next number (`v3.html` becomes `v4.html`) and make the changes in the new file only. **Never edit an older version.**
+- **Standalone:** copy the newest version to the next number (`v3.html` becomes `v4.html`) and make the changes in the new file only. **Never edit an older version.**
+- **In the app** (`${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md`): make the changes in the page's real files on the design branch, with the app's preview running, and commit the round as the next version ("Member dashboard v4: ..."). For alternatives, add option routes as in that guide's section 4.
 - Use brand classes and values only, as in the original.
 - Reuse first (`reuse-first.md`). If the change needs a new piece, like a testimonial strip or a comparison table, check whether the real app, the brandbook or another prototype already has one, and use that markup.
 - Ripples (`ripple-effects.md`). If the change touches a shared piece (the header, the menu, a card style, a button's words) or something other pages link to, list what else it affects in your plan in Step 4. Then update those too: other prototypes as new versions, `touches/` prototypes, and the brandbook. Also update `changes.md`.
@@ -111,5 +112,5 @@ Then: "Anything else you'd like to change?" Keep going round by round until they
 - **Every round is a new version.** Never overwrite or delete an older version.
 - **Only what was asked.** Mention other ideas, don't apply them.
 - **Stay on brand, or decide together.** Never silently add colors or fonts.
-- **Prototypes only.** Never edit the person's real app files.
+- **Only on the design branch.** In-app changes touch the project's files only on the throwaway design branch, never the backend, database or real data. Standalone changes stay in `prototypes/`.
 - **Never on their working branch.** Follow `where-files-go.md`.

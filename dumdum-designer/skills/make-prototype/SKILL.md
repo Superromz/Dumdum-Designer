@@ -20,12 +20,13 @@ Shared guides (read each one when you reach the step that needs it):
 - `${CLAUDE_PLUGIN_ROOT}/references/reuse-first.md`: reuse existing components and design elements before making new ones
 - `${CLAUDE_PLUGIN_ROOT}/references/ripple-effects.md`: design the changes this work causes in other existing pages and components
 - `${CLAUDE_PLUGIN_ROOT}/references/look-at-it.md`: check the result in a real browser before showing it
+- `${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md`: build it inside the real app, or standalone
 
 ---
 
 ## Step 1: Say what's about to happen
 
-> "I'll build a clickable version of your page that you can open in your browser. It's a prototype, a working model, kept separate from your real project, so we can try ideas freely."
+> "I'll build a clickable version of your page that you can open in your browser. It's a prototype, a working model. It's kept on a throwaway design branch, separate from your real work, so we can try ideas freely."
 
 ## Step 2: Make sure there's a brand
 
@@ -56,6 +57,8 @@ Then follow `reuse-first.md`. Before designing anything, list what already exist
 
 Then follow steps 1 and 2 of `ripple-effects.md`: work out which existing pages and components this page touches (how people get to it, shared pieces it changes, new building blocks) and confirm the list with the person in one message. If the page plan already lists them, use that list.
 
+**Where to build it.** Follow sections 1 and 2 of `prototype-in-app.md`. If there's a real app that runs, recommend building inside it, from the real components, on the design branch. Otherwise build standalone. Ask the one question there whenever there's an app, even if the person asked you to skip questions. Then get the app running if you're building in it. Only switch to standalone after a real attempt to start it fails, and say why. Before building, always state the mode and the reason in one line: "Building it inside your app, from your real header and cards." or "Building a standalone version, because [reason]."
+
 ## Step 4: Ask how many versions
 
 > "How many versions would you like to see? I can make **1**, **2** or **3** different takes so you can compare them side by side. I'd suggest **2**: enough to compare, without too much to choose from."
@@ -73,9 +76,11 @@ Before building, describe each direction in one line and get an OK:
 
 ## Step 5: Build
 
-Make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.html`, `option-c.html`. With only one version, it's still `option-a.html`.
+**In the app:** follow sections 3 and 4 of `prototype-in-app.md`. Each option is its own route or page next to the real one, built from the real components, with the ripples as real edits. The rules below about real words, phone layout, accessibility, clickable parts and the brand's look still apply. The standalone file rules (the template, `brand.css` links, nothing to install) don't.
 
-Start each file from `prototype-template.html` and follow these rules:
+**Standalone:** make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.html`, `option-c.html`. With only one version, it's still `option-a.html`. Start each file from `prototype-template.html`.
+
+Follow these rules:
 
 - **Design the ripples too.** Follow step 3 of `ripple-effects.md`: changed shared pieces appear in their new form in every option, other prototypes using them get a new version, existing pages that change get a small `touches/` prototype, and the brandbook gets any new or changed building block. Write `changes.md` (step 4).
 - **Reuse before you make.** Use the pieces you listed in Step 3 with the same markup. Only make a new piece when nothing existing fits, and then follow the "When something new is needed" rules in `reuse-first.md`. Every version uses the same pieces, so the versions differ in direction, not in style.
@@ -95,7 +100,7 @@ Start each file from `prototype-template.html` and follow these rules:
 { file: "option-b.html", label: "Option B", note: "Reassuring: what's included and a customer quote first." },
 ```
 
-Check that no `{{` is left. With only one option, skip the compare screen.
+For in-app options, each `file` is the option's preview address in the running app (`http://localhost:3000/dashboard-option-a`). Check that no `{{` is left. With only one option, skip the compare screen.
 
 Before showing anything, go through `design-checklist.md` yourself, then follow `look-at-it.md`. Open every version in a real browser (Claude in Chrome or whichever browser tool is available), check phone, tablet and desktop widths, click the main interactions, and compare against the brandbook and the pieces you reused. Fix what you find and look again.
 
@@ -103,7 +108,7 @@ Save and commit following `where-files-go.md`. Never commit on their working bra
 
 ## Step 6: Show and explain
 
-Open the compare screen in their browser (or the single option, if there's only one): Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`. Then explain briefly:
+Open the compare screen in their browser (or the single option, if there's only one). For in-app prototypes, keep the app's preview running while they look, and serve the compare screen as `look-at-it.md` describes. Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`. Then explain briefly:
 
 > "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
 >
@@ -124,8 +129,8 @@ After they've flipped through the options, give them clear choices, one message:
 > 3. **Remove options** you don't like, so it's easier to compare the rest.
 > 4. **None of these feel right.** Tell me what feels off and I'll try new directions."
 
-- **Pick one:** copy it to `prototypes/<page-name>/v1.html` and commit. Leave the option files and the compare screen in place.
-- **A mix:** build the mix as `v1.html`, explain what came from where, and commit.
+- **Pick one:** standalone, copy it to `prototypes/<page-name>/v1.html` and commit, leaving the option files and the compare screen in place. In the app, make the picked option the real route (for example `/dashboard`), remove the other option routes, and commit as "v1" (`prototype-in-app.md` section 5).
+- **A mix:** build the mix as version 1 (standalone `v1.html`, or the real route in the app), explain what came from where, and commit.
 - **Add an option:** describe its direction in one line and get an OK. Build it as the next letter (`option-c.html`) with the same rules as Step 5, look at it (`look-at-it.md`), add it to the `OPTIONS` list in `compare.html`, commit, and reopen the compare screen showing the new one (`compare.html#3` for the third option). Then offer these choices again.
 - **Remove options:** confirm which ones in a sentence ("I'll remove Option B and keep A and C"), then take them off the `OPTIONS` list in `compare.html` and delete their files. Don't rename the remaining files. Commit, reopen the compare screen, and offer these choices again. They're on the throwaway design branch, so say: "They're still in the design history if you change your mind." If only one option is left, treat it as picked.
 - **None feel right:** ask what feels off, one question at a time, then add new options as above.
@@ -140,7 +145,7 @@ If they say the design is approved, or they're done: in a git project, follow St
 
 ## Rules
 
-- **Prototype, not the real app.** Never edit the person's real app files. Prototypes live only in `prototypes/`.
+- **Real app only on the design branch.** In-app prototypes edit the project's files only on the throwaway design branch, never the backend, database or real data, and never on the working branch. Standalone prototypes live only in `prototypes/`.
 - **Never on their working branch.** Follow `where-files-go.md`.
 - **Reuse first.** Existing pieces from the real app, the brandbook and other prototypes come before anything new. See `reuse-first.md`.
 - **The brand is the source of truth.** If a page needs a building block the brand doesn't have, build it from brand values and mention it. Never introduce new colors or fonts.

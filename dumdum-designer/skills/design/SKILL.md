@@ -43,6 +43,8 @@ Check the project folder on the current branch, and any `dumdum-designer/...` de
 
 ## Step 3: Show the route
 
+If there's a real app that runs, say the page will be built inside it, from the real components, on the design branch. Otherwise say it'll be a standalone prototype (`${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md`). The page step asks to confirm.
+
 Tell them, in two or three lines, what you found and the route you'll take. Name the steps in plain words, not as commands. Then ask for an OK before starting.
 
 Choose the route from what they asked for and what exists:

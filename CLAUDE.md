@@ -30,6 +30,7 @@ Every skill must:
 - save following `references/where-files-go.md`, which means never committing on the person's working branch unless they explicitly ask;
 - reuse existing components and design elements before making new ones (`references/reuse-first.md`);
 - find and design the ripple effects on existing pages and components, and list them in `changes.md` (`references/ripple-effects.md`);
+- build prototypes inside the real app when it runs, otherwise standalone (`references/prototype-in-app.md`), changing app files only on the design branch;
 - check any page it makes or changes in a real browser (Claude in Chrome or whichever browser tool is available) before showing it (`references/look-at-it.md`).
 
 When you change the templates or starter looks in this repo, check them in a real browser too, at phone and desktop widths.

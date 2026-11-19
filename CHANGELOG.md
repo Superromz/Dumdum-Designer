@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.5.0
+
+- **Hybrid prototypes.** When the project has an app that runs, prototypes are now built inside it, on the throwaway design branch, from the real header, menus and components, instead of being recreated as separate HTML. People see the page in their own app, ripple effects become real edits (the real menu gets the new link), and an approved design is a head start for the developer. Options are separate routes in the compare screen, and versions are commits. When there's no app, it won't start, or the person wants a quick sketch, prototypes are standalone HTML as before.
+- The app is started the project's own way, packages are only installed with permission, local sample data and test accounts are used, and the backend, database and real data are never touched.
+
 ## 2.4.1
 
 - The browser check now also flags too much empty space (sections much taller than their content), and the design checklist has a matching "No dead space" item.
