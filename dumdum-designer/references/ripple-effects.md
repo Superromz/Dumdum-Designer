@@ -16,6 +16,8 @@ Before designing, ask yourself these questions, and answer them by looking (not 
 
 Look in three places: the real app (its navigation, layout and component files, read only), the brandbook, and `prototypes/` plus `design/pages/`.
 
+Sort what you find into two kinds. **Small edits** are obvious and have one right answer, like adding a menu link. **Pieces** have real design choices, like how Home leads into the new page, or an email. `make-prototype` gives pieces their own options (its Step 4).
+
 ## 2. Tell the person
 
 Before designing, list the ripples you found in plain words and confirm them in one message:

@@ -61,6 +61,21 @@ Then follow steps 1 and 2 of `ripple-effects.md`: work out which existing pages 
 
 ## Step 4: Ask how many versions
 
+**First, count the pieces.** A piece is a part of the design with real design choices in it: the new page itself, plus any ripple from Step 3 that needs designing rather than a small edit. Examples: how Home leads into the new page (a stat bar, a card or a banner), a new section on an existing page, a monthly email. Small, obvious edits like adding a menu link are ripples, not pieces: they're just done.
+
+**Several pieces: options per piece, by default.** Don't ask how to structure the options. Say it in one line and ask only how many:
+
+> "This design has three pieces: the My progress page, how Home leads into it, and the monthly email. I'll give you options for each piece separately, so you can pick the best of each and I'll put the winners together. I'd suggest **2 options per piece**. OK, or would you like a different number for any of them?"
+
+If they'd rather compare differently, do that instead:
+
+- **Whole experiences:** each option is a complete set (Option A's page with a matching Home entry and email, and Option B's own set).
+- **Variants inside one design:** one overall direction, with two or three versions of specific sections to switch between.
+
+Only offer those two if they ask, or if the pieces can't sensibly be mixed (for example, the Home entry only makes sense with one particular page layout). In that case say so and recommend whole experiences.
+
+**One piece: just ask how many.**
+
 > "How many versions would you like to see? I can make **1**, **2** or **3** different takes so you can compare them side by side. I'd suggest **2**: enough to compare, without too much to choose from."
 
 If they pick more than one, make the versions **genuinely different directions**, not the same page in different colors. The brand stays the same across all of them. Vary things like:
@@ -69,7 +84,7 @@ If they pick more than one, make the versions **genuinely different directions**
 - the layout (one column, side by side, cards in a grid)
 - how much is on the page (minimal, or detailed and reassuring)
 
-Before building, describe each direction in one line and get an OK:
+Before building, describe each direction in one line, per piece when there are several, and get an OK:
 
 > "- **Option A, straight to the point:** headline, the three plans, done. Short and fast.
 > - **Option B, reassuring:** opens with what's included and a customer quote, then the plans, then common questions."
@@ -78,7 +93,11 @@ Before building, describe each direction in one line and get an OK:
 
 **In the app:** follow sections 3 and 4 of `prototype-in-app.md`. Each option is its own route or page next to the real one, built from the real components, with the ripples as real edits. The rules below about real words, phone layout, accessibility, clickable parts and the brand's look still apply. The standalone file rules (the template, `brand.css` links, nothing to install) don't.
 
-**Standalone:** make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.html`, `option-c.html`. With only one version, it's still `option-a.html`. Start each file from `prototype-template.html`.
+**Standalone:** make one file per version: `prototypes/<page-name>/option-a.html`, `option-b.html`, `option-c.html`. With only one version, it's still `option-a.html`. With several pieces, give each piece its own folder: `prototypes/<page-name>/<piece>/option-a.html`, for example `page/`, `home-entry/` and `email/`. Start each file from `prototype-template.html`.
+
+**Each piece's options show it in context.** A Home entry option shows Home with that entry in place, not the entry floating on its own. Options for one piece keep the other pieces neutral (the current Home, or the first option of the page), so you compare one thing at a time.
+
+**Emails** are prototyped as an HTML email preview, standalone, even when the rest is built in the app. Show it at phone width and email width (about 600px), with a sample subject line and preview text. If the project already has email templates, build it from those instead, on the design branch.
 
 Follow these rules:
 
@@ -93,14 +112,22 @@ Follow these rules:
 - **Accessible.** Every field has a label, every image box has a description, everything clickable works with the keyboard, and headings go in order (h1, then h2, and so on).
 - **Self-contained except for the brand.** Only `brand.css`, Google Fonts (through `brand.css`) and the Lucide icons. Nothing to install.
 
-**The compare screen.** When there is more than one option, also make `prototypes/<page-name>/compare.html` from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html`. It shows all the options in one screen, with a switcher to flip between them and phone, tablet and desktop sizes. Fill `{{PAGE_NAME}}` and `{{BRAND_NAME}}`, and replace `{{OPTIONS_LIST}}` with one line per option, in order:
+**The compare screen.** When there is more than one option, also make `prototypes/<page-name>/compare.html` from `${CLAUDE_PLUGIN_ROOT}/references/compare-template.html`. It shows all the options in one screen, with a switcher to flip between them, phone, tablet and desktop sizes and, when there are several pieces, a switcher for the piece plus a line showing the option currently chosen for each. Fill `{{PAGE_NAME}}` and `{{BRAND_NAME}}`, and replace `{{PIECES_LIST}}` with one entry per piece, in order:
 
 ```js
-{ file: "option-a.html", label: "Option A", note: "Straight to the point: headline, the three plans, done." },
-{ file: "option-b.html", label: "Option B", note: "Reassuring: what's included and a customer quote first." },
+{ name: "My progress page", options: [
+  { file: "page/option-a.html", label: "Option A", note: "Coach's summary: a short written recap first." },
+  { file: "page/option-b.html", label: "Option B", note: "Dashboard: numbers and a chart first." },
+] },
+{ name: "Home entry", options: [
+  { file: "home-entry/option-a.html", label: "Option A", note: "A stat bar and a 'This month' line." },
+  { file: "home-entry/option-b.html", label: "Option B", note: "A small progress card." },
+] },
 ```
 
-For in-app options, each `file` is the option's preview address in the running app (`http://localhost:3000/dashboard-option-a`). Check that no `{{` is left. With only one option, skip the compare screen.
+A design with one piece has a single entry, and the piece switcher hides itself.
+
+For in-app options, each `file` is the option's preview address in the running app (`http://localhost:3000/dashboard-option-a`). Check that no `{{` is left. With only one option in total, skip the compare screen.
 
 Before showing anything, go through `design-checklist.md` yourself, then follow `look-at-it.md`. Open every version in a real browser (Claude in Chrome or whichever browser tool is available), check phone, tablet and desktop widths, click the main interactions, and compare against the brandbook and the pieces you reused. Fix what you find and look again.
 
@@ -110,7 +137,7 @@ Save and commit following `where-files-go.md`. Never commit on their working bra
 
 Open the compare screen in their browser (or the single option, if there's only one). For in-app prototypes, keep the app's preview running while they look, and serve the compare screen as `look-at-it.md` describes. Windows `start "" "<path>"`, Mac `open "<path>"`, Linux `xdg-open "<path>"`. Then explain briefly:
 
-> "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
+> "Both options are open in one screen. Use the **Option A / Option B** buttons at the top, or the arrow keys, to flip between them. (With several pieces: pick a piece at the top first, then flip through its options. The up and down arrow keys switch pieces, and the line under the bar shows what you've got chosen for each piece.) The **Phone / Tablet / Desktop** buttons show how each one looks on different screens. Try clicking around inside each one.
 >
 > - **Option A** leads with [what], so [why it might work].
 > - **Option B** leads with [what], so [why it might work].
@@ -124,15 +151,16 @@ Add one short lesson tied to a choice you made, for example: "Notice there's onl
 After they've flipped through the options, give them clear choices, one message:
 
 > "What would you like to do?
-> 1. **Pick one** to keep working on. It's also fine to say 'A, but with B's top section'.
+> 1. **Pick one** to keep working on (with several pieces: one for each piece, like 'page B, Home A, email A'). It's also fine to say 'A, but with B's top section'.
 > 2. **Add another option**, for example 'one more that's more playful' or 'a version with photos first'.
 > 3. **Remove options** you don't like, so it's easier to compare the rest.
 > 4. **None of these feel right.** Tell me what feels off and I'll try new directions."
 
 - **Pick one:** standalone, copy it to `prototypes/<page-name>/v1.html` and commit, leaving the option files and the compare screen in place. In the app, make the picked option the real route (for example `/dashboard`), remove the other option routes, and commit as "v1" (`prototype-in-app.md` section 5).
 - **A mix:** build the mix as version 1 (standalone `v1.html`, or the real route in the app), explain what came from where, and commit.
-- **Add an option:** describe its direction in one line and get an OK. Build it as the next letter (`option-c.html`) with the same rules as Step 5, look at it (`look-at-it.md`), add it to the `OPTIONS` list in `compare.html`, commit, and reopen the compare screen showing the new one (`compare.html#3` for the third option). Then offer these choices again.
-- **Remove options:** confirm which ones in a sentence ("I'll remove Option B and keep A and C"), then take them off the `OPTIONS` list in `compare.html` and delete their files. Don't rename the remaining files. Commit, reopen the compare screen, and offer these choices again. They're on the throwaway design branch, so say: "They're still in the design history if you change your mind." If only one option is left, treat it as picked.
+- **Several pieces:** they can pick piece by piece, in any order. A piece is done once it has a pick. When every piece has one, **put the winners together** as version 1 of the whole design: the picked page, Home with the picked entry leading to it, and the picked email, all linked up. In the app, the picks become the real routes and edits, and the other option routes are removed. Standalone, save them as `v1.html` in each piece's folder, with links between them. Check the combination in a real browser (`look-at-it.md`), because pieces picked separately can clash when combined (for example two headings saying the same thing). Fix that, then commit and show it.
+- **Add an option:** describe its direction in one line and get an OK. Build it as the next letter (`option-c.html`, in that piece's folder when there are several pieces) with the same rules as Step 5, look at it (`look-at-it.md`), add it to that piece's `options` in the `PIECES` list in `compare.html`, commit, and reopen the compare screen showing the new one (`compare.html#1-3` opens the first piece's third option). Then offer these choices again.
+- **Remove options:** confirm which ones in a sentence ("I'll remove Option B and keep A and C"), then take them off that piece's `options` in `compare.html` and delete their files. Don't rename the remaining files. Commit, reopen the compare screen, and offer these choices again. They're on the throwaway design branch, so say: "They're still in the design history if you change your mind." If only one option is left for a piece, treat it as picked.
 - **None feel right:** ask what feels off, one question at a time, then add new options as above.
 
 Then:

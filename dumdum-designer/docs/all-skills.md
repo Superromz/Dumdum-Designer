@@ -82,7 +82,7 @@ Builds a clickable version of the page that opens in your browser, using your br
 > Dumdum: Option A, straight to the point: pick a cake, pick a date, order. Option B, inspiring: opens with photos of past cakes, then the order form. Sound good?
 
 **What it produces:**
-`prototypes/<page>/option-a.html`, `option-b.html` and so on, plus `compare.html`, one screen that switches between the options at phone, tablet and desktop sizes. You can add or remove options until one feels right. The one you pick is saved as `v1.html`.
+`prototypes/<page>/option-a.html`, `option-b.html` and so on, plus `compare.html`, one screen that switches between the options at phone, tablet and desktop sizes. When a design has several pieces (say the page, how Home leads into it, and an email), you get options for each piece and pick the best of each, and Dumdum combines the winners. You can add or remove options until one feels right. The one you pick is saved as `v1.html`.
 
 
 ---

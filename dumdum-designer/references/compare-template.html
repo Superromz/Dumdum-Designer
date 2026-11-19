@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{PAGE_NAME}}: compare options | {{BRAND_NAME}}</title>
   <!--
-    Dumdum Designer compare screen. Shows every option of one page in a single
-    screen, with a switcher and phone, tablet and desktop sizes.
-    The list of options is the OPTIONS list in the script at the bottom.
-    To add or remove an option, change that list.
+    Dumdum Designer compare screen. Shows the options for each piece of a
+    design in one screen, with a switcher, phone, tablet and desktop sizes,
+    and a summary of the option currently chosen for each piece.
+    The pieces and their options are the PIECES list in the script at the
+    bottom. To add or remove an option or a piece, change that list.
   -->
   <link rel="stylesheet" href="../../design/brand.css">
   <style>
@@ -25,10 +26,22 @@
     }
     .cmp-title { margin: 0; font-size: var(--text-h4); }
     .cmp-title small { display: block; color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400; font-size: var(--text-small); }
-    .cmp-options { flex-wrap: wrap; }
+    .cmp-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .cmp-group > span { color: var(--color-text-muted); font-size: var(--text-small); font-weight: 600; }
+    .cmp-group .segmented { flex-wrap: wrap; }
     .cmp-spacer { flex: 1; }
-    .cmp-note { padding: 8px 20px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--text-small); }
-    .cmp-note strong { color: var(--color-text); }
+    .cmp-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 24px;
+      padding: 8px 20px;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+    }
+    .cmp-info strong { color: var(--color-text); }
+    .cmp-picks:empty { display: none; }
     .cmp-stage { flex: 1; display: flex; justify-content: center; padding: 20px; overflow: auto; }
     .cmp-frame {
       width: 100%;
@@ -42,16 +55,19 @@
       transition: width 0.2s ease;
     }
     @media (max-width: 640px) {
-      .cmp-bar { padding: 12px 16px; }
-      .cmp-stage { padding: 12px; }
-      .cmp-sizes { display: none; }
+      .cmp-bar { gap: 8px; padding: 8px 12px; }
+      .cmp-title small, .cmp-group > span, .cmp-picks, #open, .cmp-sizes, .cmp-spacer { display: none; }
+      .cmp-group .segmented button { min-height: 32px; padding: 4px 10px; font-size: var(--text-small); }
+      .cmp-info { padding: 6px 12px; }
+      .cmp-stage { padding: 8px; }
     }
   </style>
 </head>
 <body>
   <header class="cmp-bar">
     <h1 class="cmp-title">{{PAGE_NAME}}<small>Compare options. Use the arrow keys to switch.</small></h1>
-    <div class="segmented cmp-options" role="group" aria-label="Options" id="options"></div>
+    <div class="cmp-group" id="piece-group"><span>Piece</span><div class="segmented" role="group" aria-label="Piece" id="pieces"></div></div>
+    <div class="cmp-group"><span>Option</span><div class="segmented" role="group" aria-label="Options" id="options"></div></div>
     <div class="cmp-spacer"></div>
     <div class="segmented cmp-sizes" role="group" aria-label="Screen size" id="sizes">
       <button type="button" data-width="375" aria-pressed="false">Phone</button>
@@ -60,42 +76,71 @@
     </div>
     <a class="button button-secondary button-small" id="open" href="#" target="_blank" rel="noopener">Open on its own</a>
   </header>
-  <p class="cmp-note" id="note" aria-live="polite"></p>
+  <div class="cmp-info">
+    <p id="note" aria-live="polite" style="margin: 0"></p>
+    <p class="cmp-picks" id="picks" style="margin: 0"></p>
+  </div>
   <main class="cmp-stage">
     <iframe class="cmp-frame" id="frame" title="Selected option"></iframe>
   </main>
 
   <script>
-    // One entry per option: the file, a short label, and its direction in one line.
-    const OPTIONS = [
-      {{OPTIONS_LIST}}
+    // One entry per piece of the design (the page itself, how Home leads into it,
+    // an email...). Each piece has its options: the file or preview address,
+    // a short label, and its direction in one line. A design with one piece has
+    // one entry here, and the piece switcher hides itself.
+    const PIECES = [
+      {{PIECES_LIST}}
     ];
 
     const frame = document.getElementById("frame");
+    const piecesBox = document.getElementById("pieces");
     const optionsBox = document.getElementById("options");
     const note = document.getElementById("note");
+    const picks = document.getElementById("picks");
     const openLink = document.getElementById("open");
-    let current = 0;
+    const chosen = PIECES.map(() => 0);
+    let piece = 0;
 
-    OPTIONS.forEach((option, index) => {
+    if (PIECES.length < 2) document.getElementById("piece-group").hidden = true;
+
+    PIECES.forEach((p, index) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.textContent = option.label;
-      button.addEventListener("click", () => show(index));
-      optionsBox.appendChild(button);
+      button.textContent = p.name;
+      button.addEventListener("click", () => showPiece(index));
+      piecesBox.appendChild(button);
     });
 
-    function show(index) {
-      current = (index + OPTIONS.length) % OPTIONS.length;
-      const option = OPTIONS[current];
+    function showPiece(index) {
+      piece = index;
+      [...piecesBox.children].forEach((b, i) => b.setAttribute("aria-pressed", String(i === piece)));
+      optionsBox.innerHTML = "";
+      PIECES[piece].options.forEach((option, i) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = option.label;
+        button.addEventListener("click", () => showOption(i));
+        optionsBox.appendChild(button);
+      });
+      showOption(chosen[piece]);
+    }
+
+    function showOption(index) {
+      const options = PIECES[piece].options;
+      chosen[piece] = (index + options.length) % options.length;
+      const option = options[chosen[piece]];
       frame.src = option.file;
       openLink.href = option.file;
       note.innerHTML = "";
       const label = document.createElement("strong");
       label.textContent = option.label + ": ";
       note.append(label, option.note);
-      [...optionsBox.children].forEach((button, i) => button.setAttribute("aria-pressed", String(i === current)));
-      history.replaceState(null, "", "#" + (current + 1));
+      [...optionsBox.children].forEach((b, i) => b.setAttribute("aria-pressed", String(i === chosen[piece])));
+      if (PIECES.length > 1) {
+        picks.textContent = "Showing: " + PIECES.map((p, i) => p.name + " " + p.options[chosen[i]].label).join(", ");
+      }
+      history.replaceState(null, "", "#" + (piece + 1) + "-" + (chosen[piece] + 1));
     }
 
     document.querySelectorAll("#sizes button").forEach((button) => {
@@ -106,13 +151,21 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.target.closest("input, textarea, select")) return;
-      if (event.key === "ArrowRight") show(current + 1);
-      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.target instanceof Element && event.target.closest("input, textarea, select")) return;
+      if (event.key === "ArrowRight") showOption(chosen[piece] + 1);
+      if (event.key === "ArrowLeft") showOption(chosen[piece] - 1);
+      if (event.key === "ArrowDown" && PIECES.length > 1) showPiece((piece + 1) % PIECES.length);
+      if (event.key === "ArrowUp" && PIECES.length > 1) showPiece((piece - 1 + PIECES.length) % PIECES.length);
     });
 
-    const start = parseInt(location.hash.slice(1), 10);
-    show(Number.isInteger(start) ? start - 1 : 0);
+    // Open at #2-1 for the second piece's first option.
+    const [startPiece, startOption] = location.hash.slice(1).split("-").map((n) => parseInt(n, 10) - 1);
+    if (Number.isInteger(startPiece) && PIECES[startPiece]) {
+      if (Number.isInteger(startOption) && PIECES[startPiece].options[startOption]) chosen[startPiece] = startOption;
+      showPiece(startPiece);
+    } else {
+      showPiece(0);
+    }
   </script>
 </body>
 </html>
