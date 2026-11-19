@@ -17,7 +17,8 @@ If no browser tool is available at all, say so plainly: "I can't look at the pag
 
 Browser tools often can't open files directly (addresses starting with `file://`). Serve the folder instead:
 
-- Start a small local web server in the project folder (you'll be on the design branch, see `where-files-go.md`) and run it in the background. Use whichever is available: `python -m http.server 8765 --bind 127.0.0.1`, `python3 -m http.server 8765 --bind 127.0.0.1`, or `npx --yes http-server -p 8765 -a 127.0.0.1`. If port 8765 is busy, pick another. Don't use the app's own dev server: the design files don't depend on the app.
+- Start a small local web server in the project folder (you'll be on the design branch, see `where-files-go.md`) and run it in the background. Use whichever is available: `python -m http.server 8765 --bind 127.0.0.1`, `python3 -m http.server 8765 --bind 127.0.0.1`, or `npx --yes http-server -p 8765 -a 127.0.0.1`. If port 8765 is busy, pick another. This serves the brandbook, standalone prototypes and compare screens.
+- For an **in-app prototype**, view it in the app's own preview, started as a background task the way `prototype-in-app.md` describes. Open its address (for example `http://localhost:3000/dashboard-option-a`). The compare screen still comes from the small server above, and its frames point at the app's addresses.
 - Open `http://127.0.0.1:8765/design/brandbook.html` or `http://127.0.0.1:8765/prototypes/<page>/<file>.html`.
 - When finished, close the tabs you opened and stop the server. If you started it as a background task, stop it with the tool that manages background tasks (for example TaskStop), not a shell one-liner. Then check the port is really free (for example, the page no longer loads, or nothing is listening on 8765) before saying it's stopped.
 

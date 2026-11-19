@@ -28,7 +28,7 @@ Shared guides:
 
 Look in `prototypes/` and `design/` on the current branch, and in any `dumdum-designer/...` design branches (see `where-files-go.md`). Reading works without switching. Switch to the design branch only if you end up fixing something.
 
-- If they named a page, check its newest version.
+- If they named a page, check its newest version. For an in-app prototype, that's the page in the running app on the design branch: start its preview as `${CLAUDE_PLUGIN_ROOT}/references/prototype-in-app.md` describes.
 - If there's only one page, check its newest version.
 - If there are several, ask which one. Offer "the brandbook itself" as an option too.
 - If there's nothing to check, suggest `/dumdum-designer:make-prototype` and stop.
@@ -74,7 +74,7 @@ If everything passes, say so plainly and name two or three things that work well
 
 Then:
 
-- Copy the newest version to the next number (`v3.html` becomes `v4.html`) and fix only the chosen items, in the new file. **Never edit an older version.**
+- Standalone: copy the newest version to the next number (`v3.html` becomes `v4.html`) and fix only the chosen items, in the new file. **Never edit an older version.** In the app: fix the chosen items in the page's files on the design branch and commit them as the next version.
 - For the brandbook, fix `brand.css` or `brand.md` and rerun the contrast check from `${CLAUDE_PLUGIN_ROOT}/references/build-the-brandbook.md`.
 - Recheck the items you fixed in a real browser, following `look-at-it.md`, and make sure the fixes didn't break anything else.
 - Save and commit following `where-files-go.md`. Never commit on their working branch.
@@ -88,5 +88,5 @@ Then:
 - **Real problems over nitpicks.** Lead with what stops people reading or using the page.
 - **Explain why, every time.** A rule without a reason teaches nothing.
 - **Be kind and specific.** Say "the price text is too light" rather than "poor contrast".
-- **Prototypes and brandbook only.** Never edit the person's real app files.
+- **Only on the design branch.** Fixes to an in-app prototype touch the project's files only on the throwaway design branch. Standalone fixes stay in `prototypes/` and `design/`.
 - **Never on their working branch.** Follow `where-files-go.md`.

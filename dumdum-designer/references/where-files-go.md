@@ -1,10 +1,10 @@
 # Where design files go
 
-Every Dumdum Designer skill follows these rules before it saves anything. Design work happens inside the person's current project, on a throwaway branch that is dropped once the design is approved. It never lands on the branch they're working on, and it never touches their app's code.
+Every Dumdum Designer skill follows these rules before it saves anything. Design work happens inside the person's current project, on a throwaway branch that is dropped once the design is approved. It never lands on the branch they're working on.
 
 ## Code agnostic
 
-Design files are plain HTML and CSS that don't depend on the person's app. They don't import its components, don't need its build tools, and don't change any of its files. This works the same in any project, whatever language or framework it uses, or none at all. Developers can later build the approved design in whatever technology the app uses.
+Prototypes are built one of two ways (`prototype-in-app.md`). **In the app**, they're made from the project's real components, on the design branch, adapting to whatever the project is built with. **Standalone**, they're plain HTML and CSS that don't depend on the app at all. Either way, the plugin never assumes a language or framework, and nothing reaches the person's working branch. The brandbook (`design/`) is always plain HTML and CSS.
 
 ## What gets saved
 
@@ -51,7 +51,7 @@ Design work goes on a throwaway branch in the same project folder, named after w
 After saving:
 
 - Check that you're on the `dumdum-designer/<name>` branch (`git branch --show-current`).
-- Stage only the design folders: `git add design prototypes` (or the `dumdum-` folder names if you used those). Never `git add -A` or `git add .`.
+- Stage only what this work created or changed: the design folders (`git add design prototypes`, or the `dumdum-` folder names if you used those), plus, for an in-app prototype, the app files you created or edited, listed one by one by path. Never `git add -A` or `git add .`, and never stage the person's own unsaved changes or files changed by installing packages (like lockfiles).
 - Commit with a short, plain sentence: `git commit -m "Add member dashboard prototype, options A and B"`.
 - Never push to GitHub or any other remote, and never merge, unless the person asks.
 

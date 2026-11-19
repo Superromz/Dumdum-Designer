@@ -31,7 +31,9 @@ If there are no ripples, say so in one line: "This page doesn't change anything 
 
 ## 3. Design the ripples too
 
-Never edit the real app's files. Design the ripples in the prototypes:
+**In-app prototypes (`prototype-in-app.md`):** make the ripples as real, minimal edits on the design branch: add the link to the real menu component, the button to the real account page, the badge to the real header. Check each touched page in the app's preview. No `touches/` mockups are needed, because the real pages show the change.
+
+**Standalone prototypes:** design the ripples in the prototypes, without editing the app:
 
 - **In the new page:** shared pieces that change (the header with the new menu item, the badge) appear in their changed form inside the new page's prototype.
 - **Other prototypes that use the same piece:** update them as a new version (`v3.html` becomes `v4.html`, never editing the old one), so every prototype shows the same, current header or card. Say which ones you updated.

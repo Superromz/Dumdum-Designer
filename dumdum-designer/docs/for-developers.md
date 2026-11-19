@@ -26,6 +26,7 @@ dumdum-designer/
     reuse-first.md          reuse existing components and design elements before making new ones
     ripple-effects.md       design the changes a page causes in existing pages and components
     look-at-it.md           check every result in a real browser before showing it
+    prototype-in-app.md     build prototypes inside the real app, or standalone
     brand-md-template.md    template for design/brand.md
     brandbook-template.html template for design/brandbook.html
     prototype-template.html starting point for every prototype file
@@ -95,7 +96,7 @@ Tips:
 - **Write instructions, not code.** SKILL.md tells Claude how to behave.
 - **Spell out the interview.** Say what to ask, in what order, with concrete options.
 - **Show example wording** in quote blocks, so the tone is clear.
-- **Include guardrails.** Never overwrite an existing brand. Never commit on the person's working branch. Never edit the real app.
+- **Include guardrails.** Never overwrite an existing brand. Never commit on the person's working branch. In-app prototypes change the app only on the design branch, and never touch the backend, database or real data.
 - **Reuse, then look.** Any skill that makes or changes a page reuses existing pieces first (`reuse-first.md`) and checks the result in a real browser before showing it (`look-at-it.md`).
 - **Describe the output concretely:** which files, where, and what the person sees.
 

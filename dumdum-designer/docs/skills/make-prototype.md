@@ -25,6 +25,6 @@ When you pick a favorite (or a mix, like "A with B's top section"), it's saved a
 
 - If the new page touches existing parts of your app (a link in the menu, a button on another page, a shared header), Dumdum designs those changes too and lists them in `changes.md`, so a developer knows everything to change.
 
-- Prototypes are completely separate from your real app. Dumdum never edits your real app's files.
+- If your project has an app that runs, the prototype is built inside it from your real components, on the design branch, and you see it in your app. Otherwise it's a standalone page. Your backend, database and real data are never touched, and nothing goes on the branch you're working on.
 - If your project uses git, prototypes are saved on a throwaway branch inside your project, like `dumdum-designer/member-dashboard`, never on the branch you're working on. Once you approve the design, the branch is dropped, or kept for a developer if you'd like.
 - Where a photo belongs, you'll see a labeled box, like `[photo: a family sharing dinner]`, instead of a fake picture.

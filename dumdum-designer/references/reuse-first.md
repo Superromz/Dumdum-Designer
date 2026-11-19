@@ -12,7 +12,8 @@ Before making any new piece of a page (a header, a card, a pricing table, a form
 
 - **Same piece, same markup.** Copy the existing piece's structure and classes exactly. Don't rebuild it from memory.
 - **Same job, same piece.** If two things do the same job (two "add to cart" buttons, two product cards), they look identical.
-- **Don't recreate the real app's code.** Prototypes match the real app's look by using `brand.css` values and similar structure. They don't import or edit the real app's component files.
+- **In the app, use the real thing.** An in-app prototype (`prototype-in-app.md`) uses the real components directly. Never copy a component to make a lookalike. If it needs to change, change the real one on the design branch (a ripple effect).
+- **Standalone, match it.** A standalone prototype matches the real app's look with `brand.css` values and similar structure. It doesn't import or edit the real app's component files.
 - **Name what you reused** when explaining the work: "I used the same header and footer as your home page prototype, and your brand's card for each plan."
 
 ## When something new is needed

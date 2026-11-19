@@ -17,5 +17,5 @@ If you ask for something outside your brand, like a color your brand doesn't use
 
 ## Good to Know
 
-- It never edits an older version, and never edits your real app.
+- It never overwrites an older version. For a prototype built inside your app, each round is saved as a version on the design branch, never on your working branch.
 - If your project uses git, each version is saved on a throwaway design branch inside your project, never on the branch you're working on.
