@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Dumdum Designer is a Claude Code plugin that helps non-technical people design and prototype new pages using plain English. It adds five skills to Claude Code. Together they take someone from "I need a pricing page" to a clickable page in their browser, built from their own brand.
+Dumdum Designer is a Claude Code plugin that helps non-technical people design and prototype new pages using plain English. It adds six skills to Claude Code: a front door and five steps. Together they take someone from "I need a pricing page" to a clickable page in their browser, built from their own brand.
 
 ## Why It Exists
 
@@ -19,7 +19,11 @@ Everything is inside the `dumdum-designer/` directory:
 - **Shared references** (`dumdum-designer/references/`) - Guides and templates every skill uses, so the skills behave consistently without depending on each other.
 - **Documentation** (`dumdum-designer/docs/`) - Design philosophy, contributor guide, the skill reference, and one doc per skill.
 
-## The Five Skills
+## The Skills
+
+**design** is the front door. It works out where the person is and takes them through the steps below in the right order, so nobody has to learn the commands first.
+
+The five steps:
 
 1. **make-brandbook** - Find the existing brand or design system, or create one together. Saves a visual brandbook, a written guide and a style file.
 2. **sketch-page** - Plan what goes on a new page, and why, with a rough sketch.

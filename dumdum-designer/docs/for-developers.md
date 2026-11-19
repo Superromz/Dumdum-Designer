@@ -12,6 +12,7 @@ dumdum-designer/
   .claude-plugin/
     plugin.json             name, version, description
   skills/
+    design/SKILL.md          the front door: routes to the steps below
     make-brandbook/SKILL.md
     sketch-page/SKILL.md
     make-prototype/SKILL.md
@@ -51,7 +52,7 @@ Each skill is a folder containing a `SKILL.md`. The folder name is the skill nam
 
 **The brandbook reads `brand.css` live.** `brandbook-template.html` fills its color swatches and type tables from the CSS values when it opens. Only the name, the logo and the do and don't lists are filled in by hand.
 
-**Shared rules live in `references/`.** Skills don't call each other. When two skills need the same behavior (finding the brand, saving files, building the brandbook), the behavior lives in a shared reference file. That keeps principle 7 ("no assumptions") without duplicating instructions.
+**Shared rules live in `references/`.** The five step skills don't call each other. Only the `design` front door reads the step skills' files and follows them, so it can take someone through several steps in a row. When two skills need the same behavior (finding the brand, saving files, building the brandbook), the behavior lives in a shared reference file. That keeps principle 7 ("no assumptions") without duplicating instructions.
 
 **The named values are a contract.** `components.css`, the starter looks, `brandbook-template.html` and `build-the-brandbook.md` all rely on the same variable names. If you add or rename one, update all four.
 

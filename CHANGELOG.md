@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0
+
+- New `design` skill, the front door. Say what you want to design (`/dumdum-designer:design the member dashboard`) and it works out what already exists, shows the route in plain words, and takes you through the brand, plan, prototype, change or check steps in order. People no longer need to know which command to start with.
+- The README and docs now start with `design`.
+
 ## 2.1.0
 
 - Every skill that makes or changes a page now checks the result in a real browser (Claude in Chrome or whichever browser tool is available) at phone, tablet and desktop widths, and fixes what it finds before showing it. It looks for overflow, overlaps, uneven spacing, misalignment, inconsistent styles, fonts or icons that didn't load, console errors, and broken interactions.
