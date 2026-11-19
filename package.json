@@ -1,22 +1,22 @@
 {
-  "name": "dumdum-skills",
-  "version": "1.0.0",
-  "description": "AI building for humans -- a Claude Code plugin that helps anyone build real software using plain English.",
+  "name": "dumdum-designer",
+  "version": "2.0.0",
+  "description": "Dumdum Designer: a Claude Code plugin for designing and prototyping new pages in plain English.",
   "author": "Superromz",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Superromz/DumDum-Skills.git"
+    "url": "https://github.com/Superromz/Dumdum-Designer.git"
   },
   "files": [
-    "dumdum-skills/"
+    "dumdum-designer/"
   ],
   "keywords": [
     "claude-code",
     "claude-code-plugin",
-    "ai",
-    "no-code",
-    "plain-english",
-    "skills"
+    "design",
+    "prototyping",
+    "brandbook",
+    "plain-english"
   ]
 }

@@ -1,0 +1,76 @@
+/*
+  Starter look: Calm
+  Quiet, trustworthy, lots of breathing room. Soft teal with a warm sand accent.
+  Good for: services, health, finance, personal sites, anything that should feel reassuring.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary: #2F6F73;
+  --color-primary-hover: #245A5E;
+  --color-primary-soft: #E3F0EF;
+  --color-primary-strong: #1E4D50;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #CFE3E1;
+  --color-on-secondary: #1E4D50;
+  --color-accent: #D9A441;
+  --color-accent-soft: #FAF0DC;
+  --color-accent-strong: #7A5410;
+
+  --color-background: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F1F2EE;
+  --color-heading: #17292B;
+  --color-text: #24302F;
+  --color-text-muted: #5D6A68;
+  --color-link: #2F6F73;
+  --color-border: #E3E5E0;
+  --color-border-strong: #C5CAC4;
+  --color-focus: #8CC2C0;
+
+  --color-success: #256B42;
+  --color-success-soft: #E2F2E8;
+  --color-warning: #8A5A00;
+  --color-warning-soft: #FBF0D9;
+  --color-danger: #B3261E;
+  --color-danger-soft: #FBE4E2;
+
+  /* Fonts */
+  --font-heading: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --weight-heading: 700;
+
+  /* Text sizes */
+  --text-h1: 44px;
+  --text-h1-phone: 34px;
+  --text-h2: 30px;
+  --text-h2-phone: 26px;
+  --text-h3: 22px;
+  --text-h4: 18px;
+  --text-large: 18px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --leading-heading: 1.2;
+  --leading-body: 1.6;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-button: 10px;
+  --radius-card: 16px;
+  --shadow-small: 0 1px 2px rgba(23, 41, 43, 0.06);
+  --shadow-large: 0 12px 32px rgba(23, 41, 43, 0.10);
+  --icon-stroke: 1.75;
+  --page-width: 1120px;
+}

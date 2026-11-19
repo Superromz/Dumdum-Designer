@@ -1,0 +1,76 @@
+/*
+  Starter look: Bold
+  Confident and modern. Big headings, strong contrast, deep indigo with a bright orange accent.
+  Good for: products, startups, launches, events, anything that should feel energetic.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary: #3B2FD9;
+  --color-primary-hover: #2E23B5;
+  --color-primary-soft: #ECEBFF;
+  --color-primary-strong: #251B99;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #0E0E16;
+  --color-on-secondary: #FFFFFF;
+  --color-accent: #FF6A13;
+  --color-accent-soft: #FFEADD;
+  --color-accent-strong: #A33A00;
+
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F3F3F7;
+  --color-heading: #0E0E16;
+  --color-text: #1A1A24;
+  --color-text-muted: #5A5A6E;
+  --color-link: #3B2FD9;
+  --color-border: #E4E4EC;
+  --color-border-strong: #B9B9C8;
+  --color-focus: #A7A1FF;
+
+  --color-success: #127A43;
+  --color-success-soft: #DDF5E7;
+  --color-warning: #8F5300;
+  --color-warning-soft: #FFF0D6;
+  --color-danger: #C21D1D;
+  --color-danger-soft: #FDE2E2;
+
+  /* Fonts */
+  --font-heading: "Space Grotesk", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --weight-heading: 700;
+
+  /* Text sizes */
+  --text-h1: 60px;
+  --text-h1-phone: 40px;
+  --text-h2: 38px;
+  --text-h2-phone: 30px;
+  --text-h3: 24px;
+  --text-h4: 18px;
+  --text-large: 19px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --leading-heading: 1.05;
+  --leading-body: 1.55;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 56px;
+  --space-8: 96px;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-button: 6px;
+  --radius-card: 8px;
+  --shadow-small: 0 1px 0 rgba(14, 14, 22, 0.08);
+  --shadow-large: 0 16px 40px rgba(14, 14, 22, 0.14);
+  --icon-stroke: 2;
+  --page-width: 1200px;
+}

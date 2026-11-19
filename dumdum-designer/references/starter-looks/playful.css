@@ -1,0 +1,76 @@
+/*
+  Starter look: Playful
+  Friendly and fun. Rounded shapes, pill buttons, coral with a sunny yellow and mint.
+  Good for: kids, hobbies, food, community groups, anything that should feel welcoming.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary: #D63D3D;
+  --color-primary-hover: #B83232;
+  --color-primary-soft: #FFE6E3;
+  --color-primary-strong: #9C2626;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #2BB3A3;
+  --color-on-secondary: #0B2F2B;
+  --color-accent: #FFC93C;
+  --color-accent-soft: #FFF4D1;
+  --color-accent-strong: #7A5600;
+
+  --color-background: #FFFBF5;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #FFF1E3;
+  --color-heading: #2B1D1D;
+  --color-text: #33262A;
+  --color-text-muted: #6E5A5E;
+  --color-link: #B83232;
+  --color-border: #F2E2D6;
+  --color-border-strong: #D9C2B4;
+  --color-focus: #FFB4A8;
+
+  --color-success: #1F7A4A;
+  --color-success-soft: #DDF5E6;
+  --color-warning: #8A5800;
+  --color-warning-soft: #FFF1D1;
+  --color-danger: #B3261E;
+  --color-danger-soft: #FDE2E0;
+
+  /* Fonts */
+  --font-heading: "Fredoka", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: "Nunito", "Segoe UI", Helvetica, Arial, sans-serif;
+  --weight-heading: 600;
+
+  /* Text sizes */
+  --text-h1: 52px;
+  --text-h1-phone: 38px;
+  --text-h2: 34px;
+  --text-h2-phone: 28px;
+  --text-h3: 24px;
+  --text-h4: 19px;
+  --text-large: 19px;
+  --text-body: 17px;
+  --text-small: 15px;
+  --leading-heading: 1.15;
+  --leading-body: 1.6;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 80px;
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-button: 999px;
+  --radius-card: 24px;
+  --shadow-small: 0 2px 0 rgba(43, 29, 29, 0.06);
+  --shadow-large: 0 14px 30px rgba(214, 61, 61, 0.14);
+  --icon-stroke: 2;
+  --page-width: 1100px;
+}

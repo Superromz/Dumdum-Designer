@@ -1,0 +1,12 @@
+{
+  "name": "dumdum-designer",
+  "version": "2.0.0",
+  "description": "Design and prototype new pages in plain English. Find or create your brandbook, plan a page, and get clickable prototypes to compare, all without knowing how to code.",
+  "author": {
+    "name": "Superromz"
+  },
+  "homepage": "https://github.com/Superromz/Dumdum-Designer",
+  "repository": "https://github.com/Superromz/Dumdum-Designer",
+  "license": "MIT",
+  "keywords": ["design", "prototyping", "brandbook", "plain-english", "no-code"]
+}
